@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ボーダレススター｜子どもと保護者のための教育カウンセリング</title>
+<meta name="description" content="元・公立小学校/特別支援学校教諭、上級心理カウンセラーの貞盛秀明による、子どもと保護者のためのオンライン教育カウンセリング。不登校・発達特性・学習のつまずき・学校との連携のお悩みに寄り添います。">
+<meta property="og:title" content="ボーダレススター｜『心の支え』を見つける">
+<meta property="og:description" content="子どもと保護者のためのオンライン教育カウンセリング。まずはLINEでお気軽にご相談ください。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://borderless-star.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z' fill='%23E8A93C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F7F5;
+  --card:#FFFFFF;
+  --ink:#2E3B3A;
+  --ink-soft:#5A6B69;
+  --primary:#2F6E63;
+  --primary-deep:#1F4F47;
+  --primary-tint:#E4EFEB;
+  --accent:#E8A93C;
+  --line-green:#06C755;
+  --line-green-deep:#05A648;
+  --radius:16px;
+  --maxw:960px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.9;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:76px; /* 追従LINEボタン分 */
+}
+h1,h2,h3{font-family:'Zen Maru Gothic',sans-serif;line-height:1.5}
+a{color:var(--primary)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* ヘッダー */
+header{
+  background:var(--card);
+  border-bottom:1px solid #E3E8E5;
+  position:sticky;top:0;z-index:50;
+}
+.header-inner{
+  max-width:var(--maxw);margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.brand svg{flex:none}
+.brand-name{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em}
+.brand-sub{font-size:11px;color:var(--ink-soft);display:block;letter-spacing:.06em}
+.header-cta{
+  background:var(--line-green);color:#fff;text-decoration:none;
+  font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;
+  white-space:nowrap;
+}
+.header-cta:hover{background:var(--line-green-deep)}
+
+/* 星モチーフ */
+.star{color:var(--accent)}
+
+/* ヒーロー */
+.hero{
+  background:linear-gradient(180deg,var(--card) 0%,var(--paper) 100%);
+  padding:64px 0 56px;text-align:center;position:relative;overflow:hidden;
+}
+.hero-star{margin-bottom:16px}
+.hero h1{font-size:clamp(28px,6vw,44px);font-weight:700;letter-spacing:.06em;color:var(--primary-deep)}
+.hero .lead{
+  margin:20px auto 0;max-width:620px;color:var(--ink-soft);
+  font-size:clamp(14px,3.6vw,16px);
+}
+.hero .name-line{margin-top:24px;font-size:14px;color:var(--ink-soft);letter-spacing:.08em}
+.hero .name-line strong{color:var(--ink);font-size:16px}
+.hero-cta-group{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.btn-line{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--line-green);color:#fff;text-decoration:none;
+  font-weight:700;font-size:17px;padding:16px 36px;border-radius:999px;
+  box-shadow:0 4px 14px rgba(6,199,85,.3);
+}
+.btn-line:hover{background:var(--line-green-deep)}
+.btn-line small{display:block;font-weight:500;font-size:11px;opacity:.9}
+.btn-ghost{
+  color:var(--primary);text-decoration:none;font-weight:700;font-size:14px;
+  border-bottom:2px solid var(--primary-tint);padding-bottom:2px;
+}
+
+/* セクション共通 */
+section{padding:56px 0}
+.sec-head{text-align:center;margin-bottom:36px}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--primary);
+  text-transform:uppercase;
+}
+.sec-head h2{font-size:clamp(22px,5vw,30px);color:var(--primary-deep);margin-top:8px;letter-spacing:.04em}
+
+/* お悩み */
+.worries{background:var(--card)}
+.worry-list{
+  max-width:640px;margin:0 auto;display:grid;gap:12px;
+}
+.worry-list li{
+  list-style:none;background:var(--paper);border-radius:var(--radius);
+  padding:16px 20px;display:flex;gap:12px;align-items:flex-start;
+  font-weight:500;
+}
+.worry-list li svg{flex:none;margin-top:6px}
+.worries .closing{
+  text-align:center;margin-top:28px;font-family:'Zen Maru Gothic',sans-serif;
+  font-weight:700;font-size:clamp(16px,4vw,19px);color:var(--primary-deep);
+}
+
+/* 提供できること */
+.services-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.service-card{
+  background:var(--card);border-radius:var(--radius);padding:28px 24px;
+  border-top:4px solid var(--primary);
+}
+.service-card h3{font-size:18px;color:var(--primary-deep);margin-bottom:12px;display:flex;gap:8px;align-items:baseline}
+.service-card p{font-size:14.5px;color:var(--ink-soft)}
+
+/* プロフィール */
+.profile{background:var(--card)}
+.profile-inner{max-width:720px;margin:0 auto}
+.profile-catch{
+  text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:700;
+  font-size:clamp(17px,4vw,20px);color:var(--primary-deep);margin-bottom:24px;
+}
+.profile-body p{margin-bottom:1.2em;font-size:15px}
+.profile details{
+  background:var(--paper);border-radius:var(--radius);padding:0;margin-top:8px;
+}
+.profile summary{
+  cursor:pointer;padding:16px 20px;font-weight:700;color:var(--primary);
+  font-family:'Zen Maru Gothic',sans-serif;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.profile summary::-webkit-details-marker{display:none}
+.profile summary::after{content:"＋";font-size:18px;color:var(--accent)}
+.profile details[open] summary::after{content:"－"}
+.profile details .detail-body{padding:0 20px 20px}
+.license-box{
+  margin-top:28px;background:var(--primary-tint);border-radius:var(--radius);
+  padding:24px;
+}
+.license-box h3{font-size:15px;color:var(--primary-deep);margin-bottom:10px}
+.license-box ul{list-style:none;display:grid;gap:6px;font-size:14.5px;font-weight:500}
+.license-box li::before{content:"✦ ";color:var(--accent)}
+
+/* 料金 */
+.price-note-top{
+  text-align:center;color:var(--ink-soft);font-size:14px;max-width:560px;margin:0 auto 32px;
+}
+.price-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:stretch}
+.price-card{
+  background:var(--card);border-radius:var(--radius);padding:28px 24px;
+  display:flex;flex-direction:column;text-align:center;
+  border:1px solid #E3E8E5;position:relative;
+}
+.price-card.featured{border:2px solid var(--primary);box-shadow:0 6px 20px rgba(47,110,99,.12)}
+.badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+  padding:3px 14px;border-radius:999px;white-space:nowrap;
+}
+.price-card h3{font-size:18px;color:var(--primary-deep)}
+.price-card .duration{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+.price-card .price{
+  font-family:'Zen Maru Gothic',sans-serif;font-weight:700;
+  font-size:34px;color:var(--ink);margin:14px 0 4px;
+}
+.price-card .price small{font-size:14px;font-weight:500;color:var(--ink-soft)}
+.price-card .per{font-size:12.5px;color:var(--ink-soft)}
+.price-card .desc{font-size:13.5px;color:var(--ink-soft);margin:14px 0 20px;text-align:left;flex:1}
+.btn-pay{
+  display:block;background:var(--primary);color:#fff;text-decoration:none;
+  font-weight:700;font-size:15px;padding:13px 0;border-radius:999px;
+}
+.btn-pay:hover{background:var(--primary-deep)}
+.btn-pay.disabled{background:#B9C6C2;pointer-events:none}
+.session-note{
+  max-width:640px;margin:32px auto 0;background:var(--card);
+  border-left:4px solid var(--accent);border-radius:8px;padding:18px 20px;
+  font-size:13.5px;color:var(--ink-soft);
+}
+.session-note strong{color:var(--ink)}
+
+/* 流れ */
+.flow{background:var(--card)}
+.flow-list{max-width:640px;margin:0 auto;display:grid;gap:0;counter-reset:step}
+.flow-step{
+  display:flex;gap:18px;padding:20px 0;position:relative;
+}
+.flow-step + .flow-step{border-top:1px dashed #D8E0DC}
+.step-num{
+  flex:none;width:44px;height:44px;border-radius:50%;
+  background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:18px;
+}
+.flow-step h3{font-size:16px;color:var(--primary-deep)}
+.flow-step p{font-size:14px;color:var(--ink-soft)}
+
+/* LINE CTA */
+.cta-final{
+  background:var(--primary-deep);color:#fff;text-align:center;
+  padding:64px 20px;
+}
+.cta-final h2{font-size:clamp(20px,5vw,28px);letter-spacing:.04em}
+.cta-final p{margin:16px auto 28px;max-width:560px;font-size:14.5px;opacity:.92}
+
+/* フッター */
+footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
+.footer-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px;text-align:center}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin-bottom:16px}
+.footer-links a{color:#C9DAD5;text-decoration:none}
+.footer-links a:hover{text-decoration:underline}
+.copyright{opacity:.7}
+
+/* スマホ追従LINEボタン */
+.fixed-line{
+  position:fixed;left:0;right:0;bottom:0;z-index:100;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  border-top:1px solid #E3E8E5;
+}
+.fixed-line a{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--line-green);color:#fff;text-decoration:none;
+  font-weight:700;font-size:16px;padding:14px;border-radius:999px;
+}
+.fixed-line a:hover{background:var(--line-green-deep)}
+@media (min-width:768px){
+  .fixed-line{display:none}
+  body{padding-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="ボーダレススター トップへ">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>
+      <span>
+        <span class="brand-name">ボーダレススター</span>
+        <span class="brand-sub">子どもと保護者のための教育カウンセリング</span>
+      </span>
+    </a>
+    <a class="header-cta" href="https://line.me/R/ti/p/@579pzely">LINEで相談</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-star">
+        <svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>
+      </div>
+      <h1>『心の支え』を<br>見つける</h1>
+      <p class="lead">不登校、発達特性、学習のつまずき、学校との関係──。<br>ひとりで抱え込まなくて大丈夫です。教員歴20年以上・特別支援教育の専門家が、お子さまと保護者の皆さまに寄り添います。</p>
+      <p class="name-line">ボーダレススター代表<br><strong>貞盛 秀明</strong>（さだちゃん先生）</p>
+      <div class="hero-cta-group">
+        <a class="btn-line" href="https://line.me/R/ti/p/@579pzely">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+          <span>LINEで無料相談する<small>友だち追加はこちら</small></span>
+        </a>
+        <a class="btn-ghost" href="#price">相談メニュー・料金を見る</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- お悩み -->
+  <section class="worries" aria-labelledby="worries-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> WORRIES</span>
+        <h2 id="worries-h">こんなお悩みはありませんか？</h2>
+      </div>
+      <ul class="worry-list">
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>学校に行きたがらない。この対応でいいのか不安</li>
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>発達特性があるかもしれない。どう関わればいいのか知りたい</li>
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>学習や生活習慣の「つまずき」が続いている</li>
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>学校との話し合いがうまくいかず、疲れてしまった</li>
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>誰にも相談できず、ひとりで抱え込んでいる</li>
+      </ul>
+      <p class="closing">その悩み、学校現場を知る専門家に話してみませんか。</p>
+    </div>
+  </section>
+
+  <!-- 提供できること -->
+  <section aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> SUPPORT</span>
+        <h2 id="services-h">私が提供できること</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>お子さまの個性に合わせた<br>学習・生活支援</h3>
+          <p>お子さまの学習や生活習慣における「つまずき」の根本原因を探り、その子に合った具体的な解決策を共に考えます。学校での様子や家庭での状況を丁寧にヒアリングし、無理なく続けられる方法を提案します。</p>
+        </div>
+        <div class="service-card">
+          <h3>保護者の皆さまの<br>不安解消と心理的サポート</h3>
+          <p>「これでいいのだろうか」という不安や、誰にも相談できないストレス。専門家としての具体的なアドバイスだけでなく、安心して悩みを打ち明けられる「心の支え」となれるよう、寄り添うことを大切にしています。</p>
+        </div>
+        <div class="service-card">
+          <h3>学校との<br>円滑な連携サポート</h3>
+          <p>学年主任として学校運営に深く関わってきた経験から、学校側の事情や教育方針を理解した上で、保護者の皆さまが学校と建設的な対話ができるようサポートいたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- プロフィール -->
+  <section class="profile" aria-labelledby="profile-h">
+    <div class="wrap profile-inner">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> PROFILE</span>
+        <h2 id="profile-h">プロフィール</h2>
+      </div>
+      <p class="profile-catch">塾講師10数年 × 教諭10数年。<br>子どもと保護者に向き合い続けてきました。</p>
+      <div class="profile-body">
+        <p>はじめまして。子どもと保護者のための教育カウンセラー、貞盛秀明と申します。私は中高大学受験の塾講師として10数年、公立小学校・特別支援学校などの教諭として10数年、これまで数多くの子どもたちや保護者の皆さまに向き合ってまいりました。</p>
+      </div>
+
+      <details>
+        <summary>経歴と教育への思い（続きを読む）</summary>
+        <div class="detail-body">
+          <p>教員として働く中で、子ども一人ひとりの個性や抱える困難が多様化していることを肌で感じてきました。特に、学校生活や学習において支援を必要とする児童が増えている現状を目の当たりにし、もっと深く、専門的に子どもたちをサポートしたいという強い思いが芽生えました。その思いから、職務に励む傍ら、心理カウンセラーの資格を取得いたしました。これは、子どもたち一人ひとりの「困り」をより深く理解し、その子に合ったサポートを専門的に提供したいという、私の思いからです。</p>
+          <p>また、学年主任として、保護者の方々からの教育相談を数多く受け、その中で保護者の皆さまが抱える不安や悩みに寄り添い、共に解決策を探っていくことの重要性を痛感しました。</p>
+          <p>しかし、現在の教育組織ではそもそもの仕事量が多く、サポートしたいのに時間が足りないことがわだかまりとしてありました。学校という組織の枠を超え、より個別のニーズに応じた支援を提供したいと考え、教育カウンセラーとして独立する道を選びました。</p>
+          <p>これまでの経験を通じて、私は子どもたちの可能性を信じ、保護者の皆さまの力を信じています。お子さまの笑顔と健やかな成長を、そして保護者の皆さまが抱える不安を少しでも軽くするために、私の経験と知識を最大限に活かしたいと考えております。どのようなお悩みでも、まずはお気軽にご相談ください。</p>
+        </div>
+      </details>
+
+      <div class="license-box">
+        <h3>所持免許・資格</h3>
+        <ul>
+          <li>幼稚園教諭（1種）</li>
+          <li>小学校教諭（1種）</li>
+          <li>特別支援学校教諭（知的・肢体不自由）</li>
+          <li>上級心理カウンセラー（JADP認定）</li>
+          <li>JAPAN MENSA 会員</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金 -->
+  <section id="price" aria-labelledby="price-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> MENU / PRICE</span>
+        <h2 id="price-h">相談メニュー・料金</h2>
+      </div>
+      <p class="price-note-top">すべてオンライン個別セッション（1回50分）です。<br>初めての方は「初回セッション」からどうぞ。</p>
+
+      <div class="price-grid">
+        
+        <div class="price-card">
+          <h3>初回セッション</h3>
+          <p class="duration">50分・初めての方限定</p>
+          <p class="price">5,500<small>円（税込）</small></p>
+          <p class="per">単発セッションの半額</p>
+          <p class="desc">現在のお悩みとご状況をじっくり伺い、今後の関わり方の方向性を一緒に整理します。相性のご確認を兼ねた入口のセッションです。</p>
+          
+          <a class="btn-pay" href="https://buy.stripe.com/3cI4gza7MgQ8aYNg6Kbsc00">初回セッションに申し込む</a>
+        </div>
+
+        <div class="price-card">
+          <h3>単発セッション</h3>
+          <p class="duration">50分・1回ごと</p>
+          <p class="price">11,000<small>円（税込）</small></p>
+          <p class="per">&nbsp;</p>
+          <p class="desc">必要なときに、必要な分だけ。就学相談の前、学校との面談の前など、節目のタイミングでのご利用に適しています。</p>
+          <a class="btn-pay" href="https://buy.stripe.com/8x2bJ15Rw8jCgj71bQbsc01">単発セッションに申し込む</a>
+        </div>
+
+        <div class="price-card featured">
+          <span class="badge">継続サポート</span>
+          <h3>月額プラン</h3>
+          <p class="duration">50分 × 月4回まで</p>
+          <p class="price">39,600<small>円（税込）/ 月</small></p>
+          <p class="per">1回あたり 9,900円（単発より10%お得）</p>
+          <p class="desc">毎週の定期セッションで、お子さまの変化に合わせて継続的に伴走します。不登校や発達特性など、腰を据えて取り組みたいご家庭に。</p>
+          <a class="btn-pay" href="https://buy.stripe.com/bJeeVddjY8jC8QF6wabsc02">月額プランに申し込む</a>
+        </div>
+      </div>
+
+      <div class="session-note">
+        <strong>セッションについて</strong><br>
+        オンライン面談は <strong>Google Meet</strong> を使用します（アカウント取得は無料です）。<br>
+        ※カウンセリングの観点より、カメラ・マイクはONでお願いいたします。
+      </div>
+    </div>
+  </section>
+
+  <!-- ご利用の流れ -->
+  <section class="flow" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> FLOW</span>
+        <h2 id="flow-h">ご利用の流れ</h2>
+      </div>
+      <div class="flow-list">
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>LINEで友だち追加</h3>
+            <p>まずはLINE公式アカウントを友だち追加。お悩みの概要をメッセージでお送りください。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>メニュー選択・お支払い</h3>
+            <p>ご希望のメニューをお選びいただき、決済リンク（Stripe）からお支払いください。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>日程調整</h3>
+            <p>LINEでご都合を伺い、セッションの日時を確定します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>オンラインセッション（50分）</h3>
+            <p>Google Meetでお話を伺います。リラックスできる場所からご参加ください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最終CTA -->
+  <div class="cta-final">
+    <h2>ひとりで悩まず、<br>まずはLINEでお話しください</h2>
+    <p>「相談するほどのことか分からない」——そう感じる段階のお悩みこそ、早めに話すことで軽くなります。友だち追加だけでも大歓迎です。</p>
+    <a class="btn-line" href="https://line.me/R/ti/p/@579pzely">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+      <span>LINEで無料相談する<small>友だち追加はこちら</small></span>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+      <a href="https://www.youtube.com/@XXXXXXX" rel="noopener">YouTube：さだちゃん先生の子育て相談室</a>
+    </div>
+    <p class="copyright">© 2026 Borderless Star（ボーダレススター）</p>
+  </div>
+</footer>
+
+<!-- スマホ下部 追従LINEボタン -->
+<div class="fixed-line">
+  <a href="https://line.me/R/ti/p/@579pzely">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+    LINEで無料相談する
+  </a>
+</div>
+
+</body>
+</html>
