@@ -9,7 +9,7 @@
 <meta property="og:description" content="子どもと保護者のためのオンライン教育カウンセリング。まずはLINEでお気軽にご相談ください。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://borderless-star.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z' fill='%23E8A93C'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -201,6 +201,17 @@ section{padding:56px 0}
 }
 .session-note strong{color:var(--ink)}
 
+.profile-photo{display:block;margin:0 auto 24px;width:min(220px,58%);border-radius:18px;box-shadow:0 8px 24px rgba(47,110,99,.18)}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:0 auto;display:grid;gap:10px}
+.faq-list details{background:var(--card);border-radius:12px;border:1px solid #E3E8E5}
+.faq-list summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"＋";color:var(--accent);font-size:17px;flex:none}
+.faq-list details[open] summary::after{content:"－"}
+.faq-list .faq-a{padding:0 18px 16px;font-size:14px;color:var(--ink-soft)}
+
 /* 流れ */
 .flow{background:var(--card)}
 .flow-list{max-width:640px;margin:0 auto;display:grid;gap:0;counter-reset:step}
@@ -340,6 +351,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <span class="sec-eyebrow"><span class="star">✦</span> PROFILE</span>
         <h2 id="profile-h">プロフィール</h2>
       </div>
+      <img class="profile-photo" src="profile-photo.jpg" alt="貞盛秀明（さだちゃん先生）">
       <p class="profile-catch">塾講師10数年 × 教諭10数年。<br>子どもと保護者に向き合い続けてきました。</p>
       <div class="profile-body">
         <p>はじめまして。子どもと保護者のための教育カウンセラー、貞盛秀明と申します。私は中高大学受験の塾講師として10数年、公立小学校・特別支援学校などの教諭として10数年、これまで数多くの子どもたちや保護者の皆さまに向き合ってまいりました。</p>
@@ -450,9 +462,54 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
           <div class="step-num">4</div>
           <div>
             <h3>オンラインセッション（50分）</h3>
-            <p>Google Meetでお話を伺います。リラックスできる場所からご参加ください。</p>
+            <p>Google Meetでお話を伺います。パソコンはブラウザだけ、スマートフォンは無料のGoogle Meetアプリで、お送りするリンクを開くだけで参加できます。表情やしぐさも、お子さまやご自身の状態を知る大切な情報です。カウンセリングの質を保つため、カメラ・マイクはONでのご参加をお願いしています。</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- よくある質問 -->
+  <section id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> FAQ</span>
+        <h2 id="faq-h">よくある質問</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>どんなことを相談できますか？</summary>
+          <p class="faq-a">不登校・登校しぶり、発達特性との関わり方、学習や生活習慣のつまずき、学校とのやり取り、子育て全般の不安など、幅広くご相談いただけます。なお、医療行為（診断・治療）は行いません。必要に応じて医療機関や公的相談機関のご利用をおすすめすることがあります。</p>
+        </details>
+        <details>
+          <summary>相談内容がまとまっていなくても大丈夫ですか？</summary>
+          <p class="faq-a">大丈夫です。「何をどう相談すればいいか分からない」という状態こそ、お話ししながら一緒に整理していくのがカウンセリングの役割です。思いつくままにお話しください。</p>
+        </details>
+        <details>
+          <summary>子ども本人が同席しなくてもいいですか？</summary>
+          <p class="faq-a">はい、保護者の方おひとりでのご相談で問題ありません（実際、保護者のみのご相談が中心です）。お子さま本人がセッションを受ける場合は、保護者の方のお申込みと同意を必須としています。</p>
+        </details>
+        <details>
+          <summary>相談したことが学校や周囲に知られませんか？</summary>
+          <p class="faq-a">ご相談内容には守秘義務を負っており、正当な理由なく第三者に開示することはありません。ただし、生命・身体に危険が及ぶおそれがある場合など、法令に基づく例外があります（詳細は利用規約をご覧ください）。</p>
+        </details>
+        <details>
+          <summary>オンラインでの相談が初めてで不安です</summary>
+          <p class="faq-a">Google Meetを使用します。パソコンならブラウザだけ、スマートフォンなら無料アプリで、お送りするリンクを開くだけで参加できます。操作が不安な場合は、事前にLINEで接続の練習にお付き合いしますので、ご安心ください。</p>
+        </details>
+        <details>
+          <summary>カメラは必ずONにしないといけませんか？</summary>
+          <p class="faq-a">原則ONでお願いしています。表情やしぐさも、お子さまやご自身の状態を理解するための大切な情報であり、カウンセリングの質に直結するためです。事情がある場合は事前にご相談ください。</p>
+        </details>
+        <details>
+          <summary>支払い方法とキャンセルについて教えてください</summary>
+          <p class="faq-a">クレジットカード決済（Stripe）による前払いです。予約日時の24時間前まで無料でキャンセル・変更できます。それ以降および無断キャンセルは料金の100%を申し受けます。</p>
+        </details>
+        <details>
+          <summary>月額プランの解約はいつでもできますか？</summary>
+          <p class="faq-a">はい、いつでも解約手続きが可能です。解約後もその月の請求期間の終わりまでは月4回のセッションをご利用いただけます。日割りの返金はありません。</p>
+        </details>
       </div>
     </div>
   </section>
