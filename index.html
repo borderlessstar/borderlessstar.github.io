@@ -6,7 +6,7 @@
 <title>ボーダレススター｜子どもと保護者のための教育カウンセリング</title>
 <meta name="description" content="元・公立小学校/特別支援学校教諭、上級心理カウンセラーの貞盛秀明による、子どもと保護者のためのオンライン教育カウンセリング。不登校・発達特性・学習のつまずき・学校との連携のお悩みに寄り添います。">
 <meta property="og:title" content="ボーダレススター｜『心の支え』を見つける">
-<meta property="og:description" content="子どもと保護者のためのオンライン教育カウンセリング。まずはLINEでお気軽にご相談ください。">
+<meta property="og:description" content="不登校・発達特性・学習のつまずき・学校との関係のご相談を、オンラインでお受けしています。初回は、合わなければ全額返金です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://borderless-star.com/">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -41,7 +41,7 @@ body{
   line-height:1.9;
   font-size:16px;
   -webkit-font-smoothing:antialiased;
-  padding-bottom:76px; /* 追従LINEボタン分 */
+  padding-bottom:76px; /* 追従ボタン分 */
 }
 h1,h2,h3{font-family:'Zen Maru Gothic',sans-serif;line-height:1.5}
 a{color:var(--primary)}
@@ -64,11 +64,11 @@ header{
 .brand-name{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em}
 .brand-sub{font-size:11px;color:var(--ink-soft);display:block;letter-spacing:.06em}
 .header-cta{
-  background:var(--line-green);color:#fff;text-decoration:none;
+  background:var(--primary);color:#fff;text-decoration:none;
   font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;
   white-space:nowrap;
 }
-.header-cta:hover{background:var(--line-green-deep)}
+.header-cta:hover{background:var(--primary-deep)}
 
 /* 星モチーフ */
 .star{color:var(--accent)}
@@ -87,14 +87,14 @@ header{
 .hero .name-line{margin-top:24px;font-size:14px;color:var(--ink-soft);letter-spacing:.08em}
 .hero .name-line strong{color:var(--ink);font-size:16px}
 .hero-cta-group{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.btn-line{
+.btn-main{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--line-green);color:#fff;text-decoration:none;
+  background:var(--primary);color:#fff;text-decoration:none;
   font-weight:700;font-size:17px;padding:16px 36px;border-radius:999px;
-  box-shadow:0 4px 14px rgba(6,199,85,.3);
+  box-shadow:0 4px 14px rgba(47,110,99,.28);text-align:center;
 }
-.btn-line:hover{background:var(--line-green-deep)}
-.btn-line small{display:block;font-weight:500;font-size:11px;opacity:.9}
+.btn-main:hover{background:var(--primary-deep)}
+.btn-main small{display:block;font-weight:500;font-size:12px;opacity:.92}
 .btn-ghost{
   color:var(--primary);text-decoration:none;font-weight:700;font-size:14px;
   border-bottom:2px solid var(--primary-tint);padding-bottom:2px;
@@ -238,13 +238,17 @@ section{padding:56px 0}
 .flow-step h3{font-size:16px;color:var(--primary-deep)}
 .flow-step p{font-size:14px;color:var(--ink-soft)}
 
-/* LINE CTA */
+/* 最終CTA */
 .cta-final{
   background:var(--primary-deep);color:#fff;text-align:center;
   padding:64px 20px;
 }
 .cta-final h2{font-size:clamp(20px,5vw,28px);letter-spacing:.04em}
 .cta-final p{margin:16px auto 28px;max-width:560px;font-size:14.5px;opacity:.92}
+.cta-final .btn-main{background:#fff;color:var(--primary-deep);box-shadow:none}
+.cta-final .btn-main:hover{background:var(--primary-tint)}
+.cta-final .mail-note{margin:20px auto 0;font-size:13px;opacity:.9}
+.cta-final .mail-note a{color:#fff}
 
 /* フッター */
 footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
@@ -258,21 +262,21 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
 .footer-socials svg{flex:none}
 .copyright{opacity:.7}
 
-/* スマホ追従LINEボタン */
-.fixed-line{
+/* スマホ追従ボタン */
+.fixed-cta{
   position:fixed;left:0;right:0;bottom:0;z-index:100;
   padding:10px 14px calc(10px + env(safe-area-inset-bottom));
   background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
   border-top:1px solid #E3E8E5;
 }
-.fixed-line a{
+.fixed-cta a{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  background:var(--line-green);color:#fff;text-decoration:none;
+  background:var(--primary);color:#fff;text-decoration:none;
   font-weight:700;font-size:16px;padding:14px;border-radius:999px;
 }
-.fixed-line a:hover{background:var(--line-green-deep)}
+.fixed-cta a:hover{background:var(--primary-deep)}
 @media (min-width:768px){
-  .fixed-line{display:none}
+  .fixed-cta{display:none}
   body{padding-bottom:0}
 }
 </style>
@@ -288,7 +292,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <span class="brand-sub">子どもと保護者のための教育カウンセリング</span>
       </span>
     </a>
-    <a class="header-cta" href="https://line.me/R/ti/p/@579pzely">LINEで相談</a>
+    <a class="header-cta" href="#price">相談を申し込む</a>
   </div>
 </header>
 
@@ -304,11 +308,10 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       <p class="lead">不登校、発達特性、学習のつまずき、学校との関係──。<br>ひとりで抱え込まなくて大丈夫です。進学塾講師約５年・小学校、特別支援学校教諭約１５年・特別支援教育の専門家が、お子さまと保護者の皆さまに寄り添います。</p>
       <p class="name-line">ボーダレススター代表<br><strong>貞盛 秀明</strong>（さだちゃん先生）</p>
       <div class="hero-cta-group">
-        <a class="btn-line" href="https://line.me/R/ti/p/@579pzely">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-          <span>LINEで無料相談する<small>友だち追加はこちら</small></span>
+        <a class="btn-main" href="#price">
+          <span>初回セッションを申し込む<small>50分 5,500円・合わなければ全額返金</small></span>
         </a>
-        <a class="btn-ghost" href="#price">相談メニュー・料金を見る</a>
+        <a class="btn-ghost" href="mailto:support@borderless-star.com">質問だけしたい方は、メールでどうぞ</a>
       </div>
     </div>
   </div>
@@ -457,26 +460,19 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <div class="flow-step">
           <div class="step-num">1</div>
           <div>
-            <h3>LINEで友だち追加</h3>
-            <p>まずはLINE公式アカウントを友だち追加。お悩みの概要をメッセージでお送りください。</p>
+            <h3>メニューを選んでお申し込み</h3>
+            <p>上の「相談メニュー・料金」からお選びいただき、決済リンク（Stripe）でお支払いください。初めての方は、初回セッションからどうぞ。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">2</div>
           <div>
-            <h3>メニュー選択・お支払い</h3>
-            <p>ご希望のメニューをお選びいただき、決済リンク（Stripe）からお支払いください。</p>
+            <h3>日程調整</h3>
+            <p>お支払いの際にご登録いただいたメールアドレスへ、1日以内に日程調整のご連絡をお送りします。届かない場合は、迷惑メールフォルダをご確認ください。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">3</div>
-          <div>
-            <h3>日程調整</h3>
-            <p>LINEでご都合を伺い、セッションの日時を確定します。</p>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-num">4</div>
           <div>
             <h3>オンラインセッション（50分）</h3>
             <p>Google Meetでお話を伺います。パソコンはブラウザだけ、スマートフォンは無料のGoogle Meetアプリで、お送りするリンクを開くだけで参加できます。表情やしぐさも、お子さまやご自身の状態を知る大切な情報です。カウンセリングの質を保つため、カメラ・マイクはONでのご参加をお願いしています。</p>
@@ -513,7 +509,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         </details>
         <details>
           <summary>オンラインでの相談が初めてで不安です</summary>
-          <p class="faq-a">Google Meetを使用します。パソコンならブラウザだけ、スマートフォンなら無料アプリで、お送りするリンクを開くだけで参加できます。操作が不安な場合は、事前にLINEで接続の練習にお付き合いしますので、ご安心ください。</p>
+          <p class="faq-a">Google Meetを使用します。パソコンならブラウザだけ、スマートフォンなら無料アプリで、お送りするリンクを開くだけで参加できます。操作が不安な場合は、事前の接続の練習にもお付き合いしますので、メールでお申し付けください。</p>
         </details>
         <details>
           <summary>カメラは必ずONにしないといけませんか？</summary>
@@ -521,11 +517,11 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         </details>
         <details>
           <summary>支払い方法とキャンセルについて教えてください</summary>
-          <p class="faq-a">クレジットカード決済（Stripe）による前払いです。予約日時の24時間前まで無料でキャンセル・変更できます。それ以降および無断キャンセルは料金の100%を申し受けます。ただし、お子さまの体調やご家庭の急な事情による場合は、1回に限り無料で振替いたします（LINEでご連絡ください）。</p>
+          <p class="faq-a">クレジットカード決済（Stripe）による前払いです。予約日時の24時間前まで無料でキャンセル・変更できます。それ以降および無断キャンセルは料金の100%を申し受けます。ただし、お子さまの体調やご家庭の急な事情による場合は、1回に限り無料で振替いたします（メールでご連絡ください）。</p>
         </details>
         <details>
           <summary>初回セッションで「合わない」と感じたら？</summary>
-          <p class="faq-a">セッション終了後24時間以内に、LINEまたはメール（support@borderless-star.com）でご連絡ください。理由はお聞きせず、初回セッションの料金を全額お返しします。お支払いに使われたクレジットカードへの返金のため、カード会社によっては反映まで数日かかることがあります。</p>
+          <p class="faq-a">セッション終了後24時間以内に、メール（support@borderless-star.com）でご連絡ください。理由はお聞きせず、初回セッションの料金を全額お返しします。お支払いに使われたクレジットカードへの返金のため、カード会社によっては反映まで数日かかることがあります。</p>
         </details>
         <details>
           <summary>月額プランの解約はいつでもできますか？</summary>
@@ -537,12 +533,12 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
 
   <!-- 最終CTA -->
   <div class="cta-final">
-    <h2>ひとりで悩まず、<br>まずはLINEでお話しください</h2>
-    <p>「相談するほどのことか分からない」——そう感じる段階のお悩みこそ、早めに話すことで軽くなります。友だち追加だけでも大歓迎です。</p>
-    <a class="btn-line" href="https://line.me/R/ti/p/@579pzely">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-      <span>LINEで無料相談する<small>友だち追加はこちら</small></span>
+    <h2>ひとりで悩まず、<br>まずは一度お話ししてみませんか</h2>
+    <p>「相談するほどのことか分からない」——そう感じる段階のお悩みこそ、早めに話すことで軽くなります。初回セッションは、話してみて合わなければ全額お返しします。</p>
+    <a class="btn-main" href="#price">
+      <span>初回セッションを申し込む<small>50分 5,500円・合わなければ全額返金</small></span>
     </a>
+    <p class="mail-note">質問だけしたい方は、<a href="mailto:support@borderless-star.com">support@borderless-star.com</a> へどうぞ。</p>
   </div>
 
 </main>
@@ -563,21 +559,14 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5" fill="none" stroke="#E4405F" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#E4405F" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.4" fill="#E4405F"/></svg>
         <span>Instagram</span>
       </a>
-      <a href="https://line.me/R/ti/p/@579pzely" aria-label="LINE公式アカウント 友だち追加">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z" fill="#06C755"/></svg>
-        <span>LINE</span>
-      </a>
     </div>
     <p class="copyright">© 2026 Borderless Star（ボーダレススター）｜2025年開設</p>
   </div>
 </footer>
 
-<!-- スマホ下部 追従LINEボタン -->
-<div class="fixed-line">
-  <a href="https://line.me/R/ti/p/@579pzely">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.03.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.89.55 1.09-.46 5.87-3.46 8.01-5.92C21.62 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-    LINEで無料相談する
-  </a>
+<!-- スマホ下部 追従ボタン -->
+<div class="fixed-cta">
+  <a href="#price">相談を申し込む</a>
 </div>
 
 </body>
