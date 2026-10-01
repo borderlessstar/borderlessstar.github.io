@@ -194,6 +194,17 @@ section{padding:56px 0}
 }
 .btn-pay:hover{background:var(--primary-deep)}
 .btn-pay.disabled{background:#B9C6C2;pointer-events:none}
+.price-card .guarantee{
+  margin-top:12px;background:var(--primary-tint);color:var(--primary-deep);
+  font-size:14px;font-weight:700;border-radius:10px;padding:8px 12px;line-height:1.6;
+}
+.price-card .guarantee small{display:block;font-size:12px;font-weight:500;color:var(--ink-soft)}
+.theme-note{
+  max-width:640px;margin:32px auto 0;background:var(--primary-tint);
+  border-radius:var(--radius);padding:22px 24px;
+}
+.theme-note h3{font-size:16px;color:var(--primary-deep);margin-bottom:8px}
+.theme-note p{font-size:14px;color:var(--ink)}
 .session-note{
   max-width:640px;margin:32px auto 0;background:var(--card);
   border-left:4px solid var(--accent);border-radius:8px;padding:18px 20px;
@@ -387,17 +398,17 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <span class="sec-eyebrow"><span class="star">✦</span> MENU / PRICE</span>
         <h2 id="price-h">相談メニュー・料金</h2>
       </div>
-      <p class="price-note-top">すべてオンライン個別セッション（1回50分）です。<br>初めての方は「初回セッション」からどうぞ。</p>
+      <p class="price-note-top">すべてオンライン個別セッション（1回50分）です。<br>初めての方は「初回セッション」からどうぞ。話してみて合わないと感じたら、全額お返しします。</p>
 
       <div class="price-grid">
-        
+
         <div class="price-card">
           <h3>初回セッション</h3>
           <p class="duration">50分・初めての方限定</p>
           <p class="price">5,500<small>円（税込）</small></p>
           <p class="per">単発セッションの半額</p>
+          <p class="guarantee">合わなければ全額返金<small>お申し出はセッション後24時間以内</small></p>
           <p class="desc">現在のお悩みとご状況をじっくり伺い、今後の関わり方の方向性を一緒に整理します。相性のご確認を兼ねた入口のセッションです。</p>
-          
           <a class="btn-pay" href="https://buy.stripe.com/3cI4gza7MgQ8aYNg6Kbsc00">初回セッションに申し込む</a>
         </div>
 
@@ -410,36 +421,25 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
           <a class="btn-pay" href="https://buy.stripe.com/8x2bJ15Rw8jCgj71bQbsc01">単発セッションに申し込む</a>
         </div>
 
-<div class="price-card featured">
-              <span class="badge">おすすめ</span>
-              <h3>継続サポート</h3>
-              <p class="duration">50分 × 月2回まで</p>
-              <p class="price">19,800<small>円（税込）/ 月</small></p>
-              <p class="per">1回あたり 9,900円（単発より10%お得）</p>
-              <p class="desc">隔週の定期セッションで、お子さまの変化に合わせて継続的に伴走します。不登校や発達特性など、腰を据えて取り組みたいご家庭に。</p>
-              <a class="btn-pay" href="https://buy.stripe.com/4gM00jdjYeI0d6V9Imbsc05">継続サポートに申し込む</a>
-</div>
-<div class="price-card">
-            <h3>浮きこぼれ相談</h3>
-            <p class="duration">50分・1回ごと</p>
-            <p class="price">13,200<small>円（税込）</small></p>
-            <p class="per">&nbsp;</p>
-            <p class="desc">成績は悪くない。むしろよくできる。それなのに学校に行きたがらない——「勉強ができるのだから問題ないはず」と言われ、相談先が見つからないままこられた方へ。学校側の事情を知る立場と、当事者としての実感の両方から、選択肢を一緒に探します。</p>
-            <a class="btn-pay" href="https://buy.stripe.com/9B64gz93I6bu6Ix07Mbsc04">浮きこぼれ相談に申し込む</a>
-          </div>
+        <div class="price-card featured">
+          <span class="badge">おすすめ</span>
+          <h3>継続サポート</h3>
+          <p class="duration">50分 × 月2回まで</p>
+          <p class="price">19,800<small>円（税込）/ 月</small></p>
+          <p class="per">1回あたり 9,900円（単発より10%お得）</p>
+          <p class="desc">隔週の定期セッションで、お子さまの変化に合わせて継続的に伴走します。不登校や発達特性など、腰を据えて取り組みたいご家庭に。</p>
+          <a class="btn-pay" href="https://buy.stripe.com/4gM00jdjYeI0d6V9Imbsc05">継続サポートに申し込む</a>
+        </div>
 
-          <div class="price-card">
-            <span class="badge">先着5組・9/30まで</span>
-            <h3>モニターセッション</h3>
-            <p class="duration">50分・初めての方限定</p>
-            <p class="price">3,300<small>円（税込）</small></p>
-            <p class="per">&nbsp;</p>
-            <p class="desc">モニターの方を5組募集します。セッション後にご感想を伺い、ホームページ等に掲載させていただくことに同意いただける方が対象です（イニシャルまたは匿名で掲載します）。2回目以降は通常価格となります。</p>
-            <a class="btn-pay" href="https://buy.stripe.com/14A5kDa7M7fyff3cUybsc03">モニターセッションに申し込む</a>
-          </div>
- 
-<div class="session-note">
-            <strong>セッションについて</strong><br>
+      </div>
+
+      <div class="theme-note">
+        <h3>「勉強はできるのに、学校がしんどい」お子さまのご相談も</h3>
+        <p>成績は悪くない。むしろよくできる。それなのに学校に行きたがらない——「勉強ができるのだから問題ないはず」と言われ、相談先が見つからないままこられた方へ。学校側の事情を知る立場と、当事者としての実感の両方から、選択肢を一緒に探します。いわゆる「浮きこぼれ」やギフテッドのご相談も、上の3つのメニューで同じ料金でお受けしています。</p>
+      </div>
+
+      <div class="session-note">
+        <strong>セッションについて</strong><br>
         オンライン面談は <strong>Google Meet</strong> を使用します（アカウント取得は無料です）。<br>
         ※カウンセリングの観点より、カメラ・マイクはONでお願いいたします。
       </div>
@@ -524,12 +524,16 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
           <p class="faq-a">クレジットカード決済（Stripe）による前払いです。予約日時の24時間前まで無料でキャンセル・変更できます。それ以降および無断キャンセルは料金の100%を申し受けます。ただし、お子さまの体調やご家庭の急な事情による場合は、1回に限り無料で振替いたします（LINEでご連絡ください）。</p>
         </details>
         <details>
+          <summary>初回セッションで「合わない」と感じたら？</summary>
+          <p class="faq-a">セッション終了後24時間以内に、LINEまたはメール（support@borderless-star.com）でご連絡ください。理由はお聞きせず、初回セッションの料金を全額お返しします。お支払いに使われたクレジットカードへの返金のため、カード会社によっては反映まで数日かかることがあります。</p>
+        </details>
+        <details>
           <summary>月額プランの解約はいつでもできますか？</summary>
-　<p class="faq-a">はい、いつでも解約手続きが可能です。解約後もその月の請求期間の終わりまでは月2回のセッションをご利用いただけます。日割りの返金はありません。</p>
-</details>
-</div>
-</div>
-</section>
+          <p class="faq-a">はい、いつでも解約手続きが可能です。解約後もその月の請求期間の終わりまでは月2回のセッションをご利用いただけます。日割りの返金はありません。</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
   <!-- 最終CTA -->
   <div class="cta-final">
