@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ボーダレススター｜子どもと保護者のための教育カウンセリング</title>
 <meta name="description" content="元・公立小学校/特別支援学校教諭、上級心理カウンセラーの貞盛秀明による、子どもと保護者のためのオンライン教育カウンセリング。不登校・発達特性・学習のつまずき・学校との連携のお悩みに寄り添います。">
-<meta property="og:title" content="ボーダレススター｜『心の支え』を見つける">
+<meta property="og:title" content="ボーダレススター｜子どもは、環境を選べない">
 <meta property="og:description" content="不登校・発達特性・学習のつまずき・学校との関係のご相談を、オンラインでお受けしています。初回は、合わなければ全額返金です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://borderless-star.com/">
@@ -84,7 +84,8 @@ header{
   margin:20px auto 0;max-width:620px;color:var(--ink-soft);
   font-size:clamp(14px,3.6vw,16px);
 }
-.hero .name-line{margin-top:24px;font-size:14px;color:var(--ink-soft);letter-spacing:.08em}
+.hero .hero-cred{margin-top:18px;font-size:13.5px;font-weight:700;color:var(--primary);letter-spacing:.06em}
+.hero .name-line{margin-top:10px;font-size:14px;color:var(--ink-soft);letter-spacing:.08em}
 .hero .name-line strong{color:var(--ink);font-size:16px}
 .hero-cta-group{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:12px}
 .btn-main{
@@ -135,6 +136,24 @@ section{padding:56px 0}
 .service-card h3{font-size:18px;color:var(--primary-deep);margin-bottom:12px;display:flex;gap:8px;align-items:baseline}
 .service-card p{font-size:14.5px;color:var(--ink-soft)}
 
+/* 無料で公開していること */
+.free{background:var(--primary-tint)}
+.free-inner{max-width:720px;margin:0 auto}
+.free-lead p{font-size:15px;margin-bottom:1em}
+.free-lead .free-key{
+  font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:clamp(16px,4vw,18px);
+  color:var(--primary-deep);background:var(--card);border-radius:12px;padding:16px 20px;margin-top:8px;
+}
+.free-links{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:24px}
+.free-links a{
+  display:block;background:var(--card);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);
+  border:1px solid #D5E3DE;
+}
+.free-links a:hover{border-color:var(--primary)}
+.free-links strong{display:block;font-family:'Zen Maru Gothic',sans-serif;font-size:16px;color:var(--primary-deep)}
+.free-links .handle{display:block;font-size:12.5px;color:var(--ink-soft)}
+.free-links .what{display:block;font-size:13.5px;margin-top:6px}
+
 /* プロフィール */
 .profile{background:var(--card)}
 .profile-inner{max-width:720px;margin:0 auto}
@@ -143,6 +162,7 @@ section{padding:56px 0}
   font-size:clamp(17px,4vw,20px);color:var(--primary-deep);margin-bottom:24px;
 }
 .profile-body p{margin-bottom:1.2em;font-size:15px}
+.profile-body .belief{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:clamp(16px,4vw,18px);color:var(--primary-deep);border-left:4px solid var(--accent);padding-left:14px}
 .profile details{
   background:var(--paper);border-radius:var(--radius);padding:0;margin-top:8px;
 }
@@ -304,8 +324,9 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       <div class="hero-star">
         <svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>
       </div>
-      <h1>『心の支え』を<br>見つける</h1>
-      <p class="lead">不登校、発達特性、学習のつまずき、学校との関係──。<br>ひとりで抱え込まなくて大丈夫です。進学塾講師約５年・小学校、特別支援学校教諭約１５年・特別支援教育の専門家が、お子さまと保護者の皆さまに寄り添います。</p>
+      <h1>子どもは、<br>環境を選べない。</h1>
+      <p class="lead">その環境のまんなかにいるのは、毎日そばにいる保護者の方です。<br>不登校、発達特性、学習のつまずき、学校との関係――お子さんのことと一緒に、あなた自身のことも相談してください。</p>
+      <p class="hero-cred">元小学校・特別支援学校教諭 × 上級心理カウンセラー</p>
       <p class="name-line">ボーダレススター代表<br><strong>貞盛 秀明</strong>（さだちゃん先生）</p>
       <div class="hero-cta-group">
         <a class="btn-main" href="#price">
@@ -328,6 +349,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>発達特性があるかもしれない。どう関わればいいのか知りたい</li>
         <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>学習や生活習慣の「つまずき」が続いている</li>
         <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>学校との話し合いがうまくいかず、疲れてしまった</li>
+        <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>毎日いっぱいいっぱいで、子どもに向き合う余裕がなくなっている</li>
         <li><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L19 13 L30 16 L19 19 L16 30 L13 19 L2 16 L13 13 Z" fill="#E8A93C"/></svg>誰にも相談できず、ひとりで抱え込んでいる</li>
       </ul>
       <p class="closing">その悩み、学校現場を知る専門家に話してみませんか。</p>
@@ -366,18 +388,20 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <h2 id="profile-h">プロフィール</h2>
       </div>
       <img class="profile-photo" src="profile-photo.jpg" alt="貞盛秀明（さだちゃん先生）">
-      <p class="profile-catch">進学塾講師約５年・小学校、特別支援学校教諭約１５年。<br>子どもと保護者に向き合い続けてきました。</p>
+      <p class="profile-catch">子どもを支える家庭ごと、<br>支えたいと思っています。</p>
       <div class="profile-body">
-        <p>はじめまして。子どもと保護者のための教育カウンセラー、貞盛秀明と申します。私は進学塾講師約５年・小学校、特別支援学校教諭約１５年、これまで数多くの子どもたちや保護者の皆さまに向き合ってまいりました。</p>
+        <p>はじめまして。子どもと保護者のための教育カウンセラー、貞盛秀明（さだちゃん先生）です。進学塾講師として約5年、小学校・特別支援学校の教諭として約15年、子どもたちと向き合ってきました。</p>
+        <p>学校で子どもたちと関わるうちに、何度も見てきた光景があります。保護者の方が、いっぱいいっぱいになっている姿です。そうなると、どれだけ子どもを大切に思っていても、向き合う時間も、気持ちの余裕もなくなってしまいます。</p>
+        <p>子どものための支援は、国がいろいろな形で用意してくれています。でも、それを支えるお母さん・お父さんのよりどころは、あまりにも少ない。あったとしても、平日の限られた時間だけ、ということがほとんどです。</p>
+        <p>じゃあ、お母さんやお父さんを助ける場所は、どこにあるんだろう。その危機感から、心理カウンセラーの資格を取りました。</p>
+        <p class="belief">子どものことは、もちろん専門です。<br>でも、子どもを支える家庭までひっくるめて、はじめて教育のスタートだと思っています。</p>
       </div>
 
       <details>
-        <summary>経歴と教育への思い（続きを読む）</summary>
+        <summary>教員時代のことと、独立した理由（続きを読む）</summary>
         <div class="detail-body">
-          <p>教員として働く中で、子ども一人ひとりの個性や抱える困難が多様化していることを肌で感じてきました。特に、学校生活や学習において支援を必要とする児童が増えている現状を目の当たりにし、もっと深く、専門的に子どもたちをサポートしたいという強い思いが芽生えました。その思いから、職務に励む傍ら、心理カウンセラーの資格を取得いたしました。これは、子どもたち一人ひとりの「困り」をより深く理解し、その子に合ったサポートを専門的に提供したいという、私の思いからです。</p>
-          <p>また、学年主任として、保護者の方々からの教育相談を数多く受け、その中で保護者の皆さまが抱える不安や悩みに寄り添い、共に解決策を探っていくことの重要性を痛感しました。</p>
-          <p>しかし、現在の教育組織ではそもそもの仕事量が多く、サポートしたいのに時間が足りないことがわだかまりとしてありました。学校という組織の枠を超え、より個別のニーズに応じた支援を提供したいと考え、教育カウンセラーとして独立する道を選びました。</p>
-          <p>これまでの経験を通じて、私は子どもたちの可能性を信じ、保護者の皆さまの力を信じています。お子さまの笑顔と健やかな成長を、そして保護者の皆さまが抱える不安を少しでも軽くするために、私の経験と知識を最大限に活かしたいと考えております。どのようなお悩みでも、まずはお気軽にご相談ください。</p>
+          <p>学年主任として、保護者の方々からの教育相談を数多く受けてきました。その中で、保護者の皆さまが抱える不安や悩みに寄り添い、一緒に解決策を探っていくことの大切さを痛感しました。</p>
+          <p>一方で、学校という組織の中では仕事量が多く、支えたいのに時間が足りないことが、ずっとわだかまりとして残っていました。学校の枠を超えて、一つひとつの家庭に合わせた支援をしたい。そう考えて、教育カウンセラーとして独立する道を選びました。</p>
         </div>
       </details>
 
@@ -390,6 +414,25 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
           <li>上級心理カウンセラー（JADP認定）</li>
           <li>JAPAN MENSA 会員</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 無料で公開していること -->
+  <section class="free" aria-labelledby="free-h">
+    <div class="wrap free-inner">
+      <div class="sec-head">
+        <span class="sec-eyebrow"><span class="star">✦</span> FREE</span>
+        <h2 id="free-h">考え方や対処法は、<br>無料で公開しています</h2>
+      </div>
+      <div class="free-lead">
+        <p>育て方のこと、学校とのこと、家庭で困ったときの対処法。元教員として伝えたいことは、InstagramとThreadsで出し惜しみせず発信しています。</p>
+        <p class="free-key">個別相談でお金をいただくのは、それを「あなたの家の、あなたのお子さん」に当てはめる部分だけです。</p>
+      </div>
+      <div class="free-links">
+        <a href="https://www.instagram.com/borderless_star/" rel="noopener"><strong>Instagram</strong><span class="handle">@borderless_star</span><span class="what">図解とリールで、すぐ使える声かけや対処法</span></a>
+        <a href="https://www.threads.com/@borderless_star" rel="noopener"><strong>Threads</strong><span class="handle">@borderless_star</span><span class="what">毎日の子育ての悩みに、元教員の本音で</span></a>
+        <a href="https://www.youtube.com/@%E3%81%95%E3%81%A0%E3%81%A1%E3%82%83%E3%82%93%E5%85%88%E7%94%9F%E3%81%AE%E5%AD%90%E8%82%B2%E3%81%A6%E7%9B%B8%E8%AB%87" rel="noopener"><strong>YouTube</strong><span class="handle">さだちゃん先生の子育て相談室</span><span class="what">動画で、じっくり</span></a>
       </div>
     </div>
   </section>
@@ -492,6 +535,14 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       </div>
       <div class="faq-list">
         <details>
+          <summary>まだ「不登校」とまでは言えない段階でも、相談していいですか？</summary>
+          <p class="faq-a">もちろんです。「行きしぶりが少し続いている」「最近ちょっと様子が違う」くらいの段階こそ、早めに話すことで軽くなります。お子さんのことではなく、保護者の方ご自身が疲れている、というご相談も歓迎です。</p>
+        </details>
+        <details>
+          <summary>費用はかかりますか？</summary>
+          <p class="faq-a">子育てや学校とのことで役立つ考え方・対処法は、InstagramとThreadsで無料で公開しています。費用がかかるのは、それをご家庭に合わせて一緒に考える個別相談だけです。初回は50分5,500円で、合わなければ全額お返しします。</p>
+        </details>
+        <details>
           <summary>どんなことを相談できますか？</summary>
           <p class="faq-a">不登校・登校しぶり、発達特性との関わり方、学習や生活習慣のつまずき、学校とのやり取り、子育て全般の不安など、幅広くご相談いただけます。なお、医療行為（診断・治療）は行いません。必要に応じて医療機関や公的相談機関のご利用をおすすめすることがあります。</p>
         </details>
@@ -533,8 +584,8 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
 
   <!-- 最終CTA -->
   <div class="cta-final">
-    <h2>ひとりで悩まず、<br>まずは一度お話ししてみませんか</h2>
-    <p>「相談するほどのことか分からない」——そう感じる段階のお悩みこそ、早めに話すことで軽くなります。初回セッションは、話してみて合わなければ全額お返しします。</p>
+    <h2>必要になったときに、<br>いつでも声をかけてください</h2>
+    <p>答えを押しつけることはしません。無料の発信を参考にしてもらうだけでも、もちろん大丈夫です。ひとりで考えるのがしんどくなったら、一度お話ししましょう。初回セッションは、話してみて合わなければ全額お返しします。</p>
     <a class="btn-main" href="#price">
       <span>初回セッションを申し込む<small>50分 5,500円・合わなければ全額返金</small></span>
     </a>
@@ -558,6 +609,10 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       <a href="https://www.instagram.com/borderless_star/" rel="noopener" aria-label="Instagram borderless_star">
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5" fill="none" stroke="#E4405F" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#E4405F" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.4" fill="#E4405F"/></svg>
         <span>Instagram</span>
+      </a>
+      <a href="https://www.threads.com/@borderless_star" rel="noopener" aria-label="Threads borderless_star">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#C9DAD5" stroke-width="2"/><text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" fill="#C9DAD5" font-family="sans-serif">@</text></svg>
+        <span>Threads</span>
       </a>
     </div>
     <p class="copyright">© 2026 Borderless Star（ボーダレススター）｜2025年開設</p>
