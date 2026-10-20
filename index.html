@@ -270,6 +270,11 @@ section{padding:56px 0}
 }
 .flow-step h3{font-size:16px;color:var(--primary-deep)}
 .flow-step p{font-size:14px;color:var(--ink-soft)}
+.flow-step{position:relative}
+.flow-step:not(:last-child)::before{content:"";position:absolute;left:21px;top:66px;bottom:-22px;width:2px;background:var(--primary-tint)}
+.flow-step + .flow-step{border-top:none}
+.step-time{display:inline-block;margin-left:8px;padding:1px 10px;border-radius:999px;background:var(--primary-tint);color:var(--primary-deep);font-size:12px;font-weight:700;vertical-align:2px;white-space:nowrap}
+.flow-note{max-width:640px;margin:20px auto 0;background:var(--primary-tint);color:var(--primary-deep);border-radius:12px;padding:14px 18px;font-size:14px;font-weight:700;text-align:center}
 
 /* 最終CTA */
 .cta-final{
@@ -534,25 +539,33 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
         <div class="flow-step">
           <div class="step-num">1</div>
           <div>
-            <h3>メニューを選んでお申し込み</h3>
-            <p>上の「相談メニュー・料金」からお選びいただき、決済リンク（Stripe）でお支払いください。初めての方は、初回セッションからどうぞ。</p>
+            <h3>メニューを選んでお申し込み<span class="step-time">1分</span></h3>
+            <p>上の「相談メニュー・料金」から選んで、カードでお支払いください（Stripe）。初めての方は、初回セッション（50分 5,500円）からどうぞ。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">2</div>
           <div>
-            <h3>日程調整</h3>
-            <p>お支払いの際にご登録いただいたメールアドレスへ、1日以内に日程調整のご連絡をお送りします。届かない場合は、迷惑メールフォルダをご確認ください。</p>
+            <h3>メールで日時のご案内<span class="step-time">1日以内</span></h3>
+            <p>お支払いのときのメールアドレスへ、候補の日時を3つお送りします。ご都合のよいものを番号で返信してください。合わなければ、ご都合のよい曜日と時間帯を教えてください。届かないときは、迷惑メールフォルダもご確認ください。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">3</div>
           <div>
-            <h3>オンラインセッション（50分）</h3>
-            <p>Google Meetでお話を伺います。パソコンはブラウザだけ、スマートフォンは無料のGoogle Meetアプリで、お送りするリンクを開くだけで参加できます。表情やしぐさも、お子さまやご自身の状態を知る大切な情報です。カウンセリングの質を保つため、カメラ・マイクはONでのご参加をお願いしています。</p>
+            <h3>カレンダーの招待が届く</h3>
+            <p>日時が決まると、Google Meetの参加リンクが入った招待メールが届きます。当日は、そのリンクを開くだけです。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>オンラインで相談<span class="step-time">50分</span></h3>
+            <p>パソコンはブラウザだけ、スマートフォンは無料のGoogle Meetアプリで参加できます。表情やしぐさも、お子さまやご自身の状態を知る大切な手がかりなので、カメラとマイクはONでのご参加をお願いしています。</p>
           </div>
         </div>
       </div>
+      <p class="flow-note">初回セッションは、終わってから24時間以内にメールでお知らせいただければ、理由を問わず全額お返しします。</p>
     </div>
   </section>
 
