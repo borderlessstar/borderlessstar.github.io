@@ -347,24 +347,29 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
 }
 
 /* 相談レポート（売りとして打ち出す） */
-.hero-report{display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:var(--card);border:1px solid #E3E8E5;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;color:var(--primary-deep);text-decoration:none}
-.hero-report:hover{border-color:var(--primary)}
-.hero-report .doc{flex:none;font-size:16px}
-.hero-report b{color:var(--accent);font-weight:700}
-.report-feature{background:var(--card)}
-.report-lead{margin-top:10px;font-size:14.5px;color:var(--ink-soft)}
+.badge-own{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;border-radius:999px;padding:3px 12px;line-height:1.6;white-space:nowrap}
+.hero-report{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px;background:#FFF4DE;border:2px solid var(--accent);border-radius:16px;padding:12px 18px;font-size:14.5px;font-weight:700;color:var(--primary-deep);text-decoration:none;box-shadow:0 4px 14px rgba(232,169,60,.25)}
+.hero-report:hover{background:#FFEDC8}
+.hero-report .arrow{color:var(--accent);font-size:18px}
+.report-feature{background:var(--primary-deep);color:#fff}
+.report-feature .sec-head h2{color:#fff;font-size:clamp(24px,6vw,34px)}
+.report-feature .sec-eyebrow{color:var(--accent)}
+.report-feature .badge-own{font-size:13px;padding:4px 14px;margin-top:12px}
+.report-lead{margin-top:12px;font-size:15px;color:#DCEBE6;font-weight:500}
 .report-feature-inner{max-width:760px;margin:0 auto;display:grid;gap:28px;align-items:center;grid-template-columns:1fr}
 @media (min-width:720px){.report-feature-inner{grid-template-columns:220px 1fr}}
 .report-feature figure{margin:0;text-align:center}
 .report-feature figure a{display:inline-block}
-.report-feature figure img{width:200px;max-width:70vw;height:auto;border-radius:6px;box-shadow:0 8px 24px rgba(47,110,99,.22)}
-.report-feature figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:10px}
+.report-feature figure img{width:200px;max-width:70vw;height:auto;border-radius:6px;border:6px solid #fff;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.report-feature figcaption{font-size:12.5px;color:#C9DDD7;margin-top:12px}
 .report-points{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.report-points li{background:var(--paper);border-radius:var(--radius);padding:14px 18px}
-.report-points strong{display:block;font-family:'Zen Maru Gothic',sans-serif;color:var(--primary-deep);font-size:16px;margin-bottom:2px}
+.report-points li{background:#fff;border-radius:var(--radius);padding:14px 18px;border-left:5px solid var(--accent)}
+.report-points strong{display:block;font-family:'Zen Maru Gothic',sans-serif;color:var(--primary-deep);font-size:17px;margin-bottom:2px}
 .report-points span{font-size:14px;color:var(--ink-soft)}
-.report-feature .report-foot{margin-top:16px;font-size:13.5px;color:var(--primary-deep);background:var(--primary-tint);border-radius:12px;padding:10px 14px}
-.report-feature .report-cta{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.report-feature .report-foot{margin-top:16px;font-size:14px;font-weight:700;color:var(--primary-deep);background:#FFF4DE;border-radius:12px;padding:12px 16px}
+.report-feature .report-cta{margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center}
+.report-feature .report-cta .btn-main{background:#fff;color:var(--primary-deep);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.report-feature .report-cta .btn-ghost{color:#fff;border-bottom-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -395,7 +400,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       <p class="lead">子どもは、環境を選べない。<br>その環境のまんなかにいるのは、毎日そばにいる保護者の方です。<br>不登校、発達特性、学習のつまずき、学校との関係――お子さんのことと一緒に、あなた自身のことも相談してください。</p>
       <p class="hero-cred">元小学校・特別支援学校教諭 × 上級心理カウンセラー</p>
       <p class="name-line">ボーダレススター代表<br><strong>貞盛 秀明</strong>（さだちゃん先生）</p>
-      <a class="hero-report" href="#report"><span class="doc" aria-hidden="true">📄</span>相談のあとに「これから取り組めること」のレポートをお届け<b>›</b></a>
+      <a class="hero-report" href="#report"><span class="badge-own">ボーダレススター独自</span><span>相談のあとに「これから取り組めること」のレポートをお届け<span class="arrow" aria-hidden="true"> ›</span></span></a>
       <div class="hero-cta-group">
         <a class="btn-main" href="#price">
           <span>初回セッションを申し込む<small>50分 5,500円・合わなければ全額返金</small></span>
@@ -454,6 +459,7 @@ footer{background:#1A3A34;color:#C9DAD5;padding:36px 0;font-size:13px}
       <div class="sec-head">
         <span class="sec-eyebrow"><span class="star">✦</span> REPORT</span>
         <h2 id="report-h">相談のあとに、<br>レポートをお届けします</h2>
+        <span class="badge-own">ボーダレススター独自</span>
         <p class="report-lead">話して終わりにしない。お話ししたことを、形にしてお渡しします。</p>
       </div>
       <div class="report-feature-inner">
