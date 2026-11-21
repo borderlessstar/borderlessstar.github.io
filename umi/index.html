@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>海の生き物せいかく診断</title>
+<meta name="description" content="16の質問に答えると、24種類の海の生き物の中から、あなたにいちばん近い生き物が分かる遊びの心理テスト。レアな生き物もいます。">
+<meta property="og:title" content="海の生き物せいかく診断｜あなたは何の生き物？">
+<meta property="og:description" content="16の質問で、24種類の海の生き物からあなたに近い生き物を診断。レアな生き物も4種類。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://borderless-star.com/umi/">
+<meta property="og:image" content="https://borderless-star.com/umi/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* VOICE: やさしく遊べる、親子向けの心理テスト
+   IDEA: Googleフォームの縦に積むカード＋泡がのぼる海のヘッダー
+   PICTURE: Canvaで作った24体の生き物の絵（結果と図鑑）
+   COLOUR and TYPE: 海の青（#0d7a99）と浅い海の泡色、Zen Maru Gothic
+   LAYOUT: 1列のカード。結果はヒーロー→理由→カード画像→図鑑 */
+:root{
+  --paper:#e7f2f5; --card:#ffffff; --ink:#16303b; --muted:#587080;
+  --sea:#0d7a99; --deep:#0a3550; --line:#d3e2e7; --error:#d93025; --gold:#c98a12;
+  --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  --body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:clip}
+.wrap{max-width:660px;margin:0 auto;padding:16px 16px 48px;display:flex;flex-direction:column;gap:12px}
+.banner{border-radius:10px;overflow:hidden;height:150px;background:linear-gradient(#8fd6e4,#0d7a99 55%,#0a3550);position:relative}
+.banner canvas{display:block;width:100%;height:100%}
+.parade{position:absolute;inset:auto 0 6px 0;display:flex;justify-content:center;gap:2px;pointer-events:none}
+.parade img{width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid rgba(255,255,255,.8);object-fit:cover}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 22px 24px}
+.titlecard{border-top:10px solid var(--sea);padding-top:20px}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(26px,6.4vw,34px);line-height:1.3;margin:0 0 10px;text-wrap:balance;letter-spacing:.02em}
+.lead{margin:0 0 8px}
+.note{font-size:13px;color:var(--muted);margin:0}
+.req{color:var(--error)}
+.titlecard .meta{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section{background:var(--sea);color:#fff;border-radius:10px;padding:12px 22px}
+.section .k{font-size:13px;opacity:.85}
+.section h2{font-family:var(--display);font-weight:700;font-size:20px;margin:0}
+.q h3{font-size:16px;font-weight:600;margin:0 0 14px;line-height:1.6}
+.q .num{color:var(--muted);font-weight:500;margin-right:6px;font-variant-numeric:tabular-nums}
+.opts{display:flex;flex-direction:column;gap:4px}
+.opt{position:relative;display:flex;align-items:center;gap:14px;padding:10px 8px;border-radius:8px;cursor:pointer;min-height:44px}
+.opt:hover{background:#f1f7f9}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.dot{flex:0 0 20px;height:20px;border-radius:50%;border:2px solid #6c8693;display:grid;place-items:center;transition:border-color .15s}
+.dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--sea);transform:scale(0);transition:transform .15s}
+.opt input:checked + .dot{border-color:var(--sea)}
+.opt input:checked + .dot::after{transform:scale(1)}
+.opt input:focus-visible + .dot{outline:3px solid #8fd6e4;outline-offset:2px}
+.q.err{border-color:var(--error)}
+.errmsg{display:none;color:var(--error);font-size:13px;margin-top:10px;align-items:center;gap:6px}
+.q.err .errmsg{display:flex}
+.errmsg b{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--error);color:#fff;font-size:11px}
+.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:4px 2px}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:10px 22px;border:1px solid transparent;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.primary{background:var(--sea);color:#fff}
+.btn.primary:hover{background:#0b6882}
+.btn.ghost{background:var(--card);color:var(--sea);border-color:var(--line)}
+.btn.insta{background:linear-gradient(45deg,#f9a03f,#e1306c 55%,#8a3ab9);color:#fff}
+.btn:focus-visible{outline:3px solid #8fd6e4;outline-offset:2px}
+.progress{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{width:120px;height:10px;border-radius:5px;background:#c9dde3;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--sea);border-radius:5px;transition:width .3s}
+/* 結果 */
+.hero{border-top:10px solid var(--sea);text-align:center;padding:22px 22px 26px}
+.hero.rare{border-top-color:var(--gold);box-shadow:0 0 0 2px #f1d58f inset}
+.hero .pre{font-size:14px;color:var(--muted);margin:0}
+.hero .pic{width:min(260px,70vw);aspect-ratio:1;margin:8px auto 0;display:block;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.hero .name{font-family:var(--display);font-weight:900;font-size:clamp(34px,10vw,56px);white-space:nowrap;line-height:1.15;margin:4px 0 6px;color:var(--deep);letter-spacing:.03em}
+.hero .catch{font-family:var(--display);font-weight:700;font-size:18px;margin:0 0 14px}
+.hero .catch span{display:block}
+.rarebadge{display:inline-block;font-family:var(--display);font-weight:900;background:var(--gold);color:#fff;border-radius:999px;padding:4px 16px;font-size:14px;letter-spacing:.1em;margin-top:6px}
+.nw{white-space:nowrap}
+.chip{display:inline-block;font-size:13px;background:#e3f1f5;color:var(--deep);border-radius:999px;padding:4px 12px}
+.card h2{font-family:var(--display);font-weight:700;font-size:20px;margin:0 0 12px;text-wrap:balance}
+.why ul{margin:0 0 14px;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+.why p{margin:0 0 10px}
+.axes{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.axis{display:grid;grid-template-columns:6.4em minmax(0,1fr) 5.2em;align-items:center;gap:8px;font-size:13px}
+.axis .l{text-align:right;color:var(--muted)} .axis .r{color:var(--muted)}
+.axis .l.on,.axis .r.on{color:var(--ink);font-weight:700}
+.track{position:relative;height:10px;border-radius:5px;background:#e3eef2}
+.track::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#b9cdd4}
+.track .you,.track .it{position:absolute;top:50%;border-radius:50%;transform:translate(-50%,-50%)}
+.track .you{width:14px;height:14px;background:var(--sea);z-index:2;box-shadow:0 0 0 2px #fff}
+.track .it{width:22px;height:22px;border:2px solid var(--deep);background:#fff}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);justify-content:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.good ul{margin:0;padding-left:1.2em}
+.more p{margin:0 0 6px}
+.share{text-align:center}
+.share .cardimg{width:min(300px,78vw);border-radius:12px;border:1px solid var(--line);box-shadow:0 6px 18px rgba(10,53,80,.15);display:block;margin:4px auto 12px}
+.share .hint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.status{font-size:13px;color:var(--sea);margin:10px 0 0;min-height:1.2em}
+.follow{text-align:center;border-top:6px solid #e1306c}
+.follow p{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.grid button{font:inherit;font-size:13px;text-align:center;background:#f3f8fa;border:1px solid var(--line);border-radius:10px;padding:6px 4px 8px;cursor:pointer;color:var(--ink);line-height:1.3;display:flex;flex-direction:column;align-items:center;gap:2px}
+.grid button img{width:72px;height:72px;object-fit:contain}
+.grid button.me{background:#d7eef4;border-color:var(--sea);font-weight:700}
+.grid button.r{border-color:#e9c46a}
+.grid button.locked{color:var(--muted);cursor:default}
+.grid button.locked .q{width:72px;height:72px;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:28px;color:#b3c6cd;background:#e8f0f3;border-radius:50%}
+.grid button[aria-expanded="true"]{outline:2px solid var(--deep)}
+.detail{margin-top:12px;background:#f3f8fa;border-radius:8px;padding:14px 16px;font-size:14px;display:flex;gap:12px;align-items:flex-start}
+.detail img{width:80px;height:80px;flex:none;object-fit:contain}
+.detail b{font-family:var(--display);font-size:17px}
+.story{border-left:6px solid #f2b84b}
+.story p{margin:0 0 10px}
+.story .sign{font-size:14px;color:var(--muted);text-align:right;margin:0}
+.safe h2{font-size:18px}
+.safe ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.follow .actions{flex-direction:column;align-items:stretch}
+.foot{text-align:center;font-size:13px;color:var(--muted);padding-top:8px}
+.foot a{color:var(--sea)}
+.hidden{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="banner" aria-hidden="true"><canvas id="sea"></canvas><div class="parade" id="parade"></div></div>
+
+  <div id="form">
+    <div class="card titlecard">
+      <h1>海の生き物 せいかく診断</h1>
+      <p class="lead">16の質問に答えると、24種類の海の生き物の中から、あなたにいちばん近い生き物が分かります。さいごに「どうしてその生き物になったのか」もお知らせします。答え方によっては、めったに出ないレアな生き物も。友だちや親子で、何になったか比べてみてください。</p>
+      <p class="note">心理学で使われる性格の考え方（ビッグファイブ）をヒントにした、遊びの心理テストです。性格を決めつけるものではありません。</p>
+      <div class="meta"><span class="req">* 必須の質問です</span><span>全16問・4分くらい</span></div>
+    </div>
+    <div class="card story">
+      <h2>つくった人から</h2>
+      <p>夕ごはんのあと、「お母さんは何だった？」「ぼくはタコ！」——そんな声が食卓に広がる時間を思い浮かべながら作りました。</p>
+      <p>答えを見せ合って、「わかる！」「意外！」と笑い合えたら、それだけで親子の会話がひとつ増えます。家族や友だちと、ぜひ一緒に遊んでみてください。</p>
+      <p class="sign">さだちゃん先生より</p>
+    </div>
+    <div class="card safe">
+      <h2>安心して遊べるように</h2>
+      <ul>
+        <li>名前やメールアドレスの入力はありません。ログインも不要で、無料です</li>
+        <li>答えはこの画面の中だけで計算しています。どこにも送られず、保存もされません（会えたレアの記録だけ、この端末に残ります）</li>
+        <li>広告は出ません</li>
+        <li>性格を決めつけるものではありません。結果は、話のきっかけとして楽しんでください</li>
+        <li>インスタやホームページへのリンクは、お子さんは保護者の方と一緒に開いてください</li>
+      </ul>
+    </div>
+    <div id="pages"></div>
+  </div>
+
+  <div id="result" class="hidden"></div>
+
+  <p class="foot">つくった人：さだちゃん先生<br>元小学校・特別支援学校の教諭｜<a href="https://borderless-star.com/">ボーダレススター</a></p>
+</div>
+
+<script>
+{
+const DATA = {"creatures": [{"name": "イルカ", "v": [2, 1, 0, 1], "catch": "場をぱっと明るくする 人気者タイプ", "home": "世界の海（群れで泳ぐ）", "look": "イルカは群れで暮らし、鳴き声で仲間とやりとりしながら泳ぎます。波に乗ったりジャンプしたり、遊ぶのも大好きです。", "why": "人の輪の中で生き生きするところと、新しいことを楽しめるところ", "good": ["初めての人ともすぐ打ちとけられる", "まわりを笑顔にできる"], "pal": "ウミガメ", "id": "iruka", "rare": false}, {"name": "アザラシ", "v": [1, 1, -2, 0], "catch": "いるだけで場がなごむ ごろごろ愛されタイプ", "home": "冷たい海の海辺（岩や氷の上）", "look": "アザラシは陸の上ではごろんと寝そべって、のんびり過ごします。でも水に入ると、すいすい上手に泳ぎます。", "why": "人なつっこくて、肩の力がぬけたマイペースなところ", "good": ["まわりの人をほっとさせる", "やるときはちゃんとやる"], "pal": "ペンギン", "id": "azarashi", "rare": false}, {"name": "ペンギン", "v": [1, 2, 1, -1], "catch": "なかまと力を合わせる まじめなチームプレーヤー", "home": "南の海と海辺", "look": "ペンギンは大きな群れで暮らします。コウテイペンギンは寒い日、みんなでぎゅっと集まり、外側と内側を交代しながら寒さをしのぎます。", "why": "みんなのことを考えて動き、決まりや約束を大事にするところ", "good": ["頼まれたことをきちんとやりとげる", "チームの空気を大切にできる"], "pal": "アザラシ", "id": "penguin", "rare": false}, {"name": "クマノミ", "v": [0, 1.5, 0.5, -1.5], "catch": "大切な場所を守る 家族思いタイプ", "home": "あたたかい海のサンゴ礁（イソギンチャクの中）", "look": "クマノミは、毒のあるイソギンチャクを家にして、そのまわりからあまり離れずに暮らします。イソギンチャクとは助け合う関係です。", "why": "身近な人を大切にして、安心できるいつもの場所を大事にするところ", "good": ["身近な人をしっかり支えられる", "まわりから信頼される"], "pal": "タコ", "id": "kumanomi", "rare": false}, {"name": "クジラ", "v": [0.5, 1.5, 0.5, 1], "catch": "大きな心でみんなを包む 見守りタイプ", "home": "世界の広い海", "look": "クジラは地球でいちばん大きな生き物の仲間です。ザトウクジラは、長い「歌」をうたうことでも知られています。", "why": "人を広い心で受けとめ、新しいことにもおおらかに向き合えるところ", "good": ["人の話をじっくり聞ける", "いろんな人と仲良くなれる"], "pal": "タツノオトシゴ", "id": "kujira", "rare": false}, {"name": "ラッコ", "v": [0, 1, -1, -1], "catch": "お気に入りを大事にする ほんわか甘え上手タイプ", "home": "北の海の海辺（海藻の森）", "look": "ラッコはお気に入りの石をわきの下にしまっておき、貝を割るのに何度も使います。眠るときは流されないよう、海藻を体に巻きつけることもあります。", "why": "のんびりしていて、好きなものや好きな人をずっと大事にするところ", "good": ["まわりの人をなごませる", "好きなことを長く続けられる"], "pal": "カニ", "id": "rakko", "rare": false}, {"name": "ウミガメ", "v": [-1.2, 1.2, 1.2, -1.2], "catch": "コツコツぶれない 安心感のかたまりタイプ", "home": "あたたかい海（何千kmも旅をする）", "look": "ウミガメはゆったり泳ぎながら、何千kmも旅をします。大人になると、生まれた浜辺の近くに戻って卵を産むことが知られています。", "why": "あわてずコツコツ進み、まわりへの気配りも忘れないところ", "good": ["約束をきちんと守れる", "いざというとき頼りになる"], "pal": "イルカ", "id": "umigame", "rare": false}, {"name": "タコ", "v": [0, -1, 0, 2], "catch": "ひらめきで切りぬける アイデアマンタイプ", "home": "世界の海の岩場", "look": "タコはとても頭がよく、体の色や模様を変えて身をかくしたり、びんのふたを開けたりできます。心臓が3つあることでも有名です。", "why": "自分なりのやり方を考えるのが好きで、新しいことにわくわくするところ", "good": ["困ったときに工夫を思いつける", "いろんなことに挑戦できる"], "pal": "クマノミ", "id": "tako", "rare": false}, {"name": "サメ", "v": [1, -2, 1, 1], "catch": "目標にまっすぐ 行動派リーダータイプ", "home": "世界の海", "look": "サメには、泳ぎ続けることで息をする種類がいます。歯は何度でも生え替わります。", "why": "自分で決めた道をまっすぐ進み、動きながら考えられるところ", "good": ["決めたらすぐ動ける", "みんなを引っぱっていける"], "pal": "メンダコ", "id": "same", "rare": false}, {"name": "フグ", "v": [1.2, -1.2, -1.2, -1.2], "catch": "気持ちがすぐ顔に出る 正直者タイプ", "home": "あたたかい海の浅いところ", "look": "フグは、危ないと感じると水を吸いこんで、ぷくっとふくらみます。気持ちがそのまま体にあらわれるような魚です。", "why": "思ったことが顔や言葉にすぐ出て、うそがつけないところ", "good": ["裏表がなく信頼される", "気持ちを素直に伝えられる"], "pal": "クジラ", "id": "fugu", "rare": false}, {"name": "カニ", "v": [-1, -1, 2, -1], "catch": "守りがかたい しっかり者タイプ", "home": "海辺の岩場や砂浜", "look": "カニはかたいこうらで体を守り、はさみを器用に使います。多くのカニは、前ではなく横に歩きます。", "why": "しっかり準備してから動き、自分のやり方を大事にするところ", "good": ["ミスが少なく、任せて安心", "自分のペースを守れる"], "pal": "ラッコ", "id": "kani", "rare": false}, {"name": "クラゲ", "v": [-1, 0, -2, 1], "catch": "流れにまかせる ふんわり感性タイプ", "home": "世界の海をただよう", "look": "クラゲの体のほとんどは水でできていて、脳もありません。海の流れにまかせて、ふわふわとただよって暮らします。", "why": "決まりにしばられず、そのときの気分や感覚を大事にするところ", "good": ["感じる力がするどい", "やわらかい雰囲気でまわりをいやす"], "pal": "クリオネ", "id": "kurage", "rare": false}, {"name": "ヤドカリ", "v": [-2, 0, 1, 1], "catch": "慎重だけど変化を楽しめる こだわり引っこしタイプ", "home": "海辺の岩場や砂浜", "look": "ヤドカリは体が大きくなると、もっと合う貝がらに引っこします。新しい貝がらは、さわったり中をのぞいたりして、じっくり調べてから選びます。", "why": "よく調べてから動く慎重さと、新しいことを受け入れる力の両方を持っているところ", "good": ["よく考えてから決められる", "変わることをこわがらない"], "pal": "アザラシ", "id": "yadokari", "rare": false}, {"name": "メンダコ", "v": [-2, 1, -1, 0], "catch": "ゆるさで人をほっこりさせる 照れ屋タイプ", "home": "深い海の底（水深200〜1000mほど）", "look": "メンダコは深い海の底で暮らすタコの仲間です。耳のように見えるひれをパタパタさせて、ふわっとただようように泳ぎます。", "why": "目立とうとしないのに、やさしくてゆるい空気でまわりをなごませるところ", "good": ["人の気持ちにそっと寄りそえる", "いるだけで場がやわらかくなる"], "pal": "サメ", "id": "mendako", "rare": false}, {"name": "チンアナゴ", "v": [-1, 1.5, -0.5, 1], "catch": "なかまと一緒が安心 ひょっこり好奇心タイプ", "home": "あたたかい海の砂地", "look": "チンアナゴは砂に穴をほって、たくさんの仲間と並んで暮らします。体を半分だけ出してエサを待ち、気配を感じるとすっと砂にかくれます。", "why": "みんなと一緒にいるのが好きで、気になることにはそっと顔を出す好奇心があるところ", "good": ["仲間を大切にできる", "小さな変化によく気づく"], "pal": "ウミウシ", "id": "chinanago", "rare": false}, {"name": "マンボウ", "v": [0.5, 0, -1.5, -1], "catch": "細かいことは気にしない おおらか天然タイプ", "home": "あたたかい海の沖", "look": "マンボウは、海面で横になってぷかぷか浮かんでいる姿が見られることがあります。体はとても大きいのに、のんびりした雰囲気の魚です。", "why": "細かいことを気にせず、ゆったり自分のペースで過ごせるところ", "good": ["小さなことでくよくよしない", "一緒にいる人の肩の力をぬいてくれる"], "pal": "カニ", "id": "manbou", "rare": false}, {"name": "タツノオトシゴ", "v": [-1, -1, 1, 2], "catch": "自分の「好き」をつらぬく こだわり職人タイプ", "home": "あたたかい海の海藻のあいだ", "look": "タツノオトシゴは、馬のような顔をした魚の仲間です。しっぽを海藻に巻きつけてじっとしています。オスがお腹の袋で赤ちゃんを育てる、めずらしい魚です。", "why": "人と同じでなくても、自分の好きなことや決めたやり方にこだわれるところ", "good": ["好きなことをとことん深められる", "ていねいな仕事ができる"], "pal": "クジラ", "id": "tatsu", "rare": false}, {"name": "ダイオウグソクムシ", "v": [-2, -1, 0, -2], "catch": "なにがあっても動じない 省エネ名人タイプ", "home": "深い海の底", "look": "ダイオウグソクムシは、深い海の底で暮らすダンゴムシの仲間です。水族館で、5年以上なにも食べずに過ごした例もあります。", "why": "まわりに流されず、自分のペースでどっしりかまえていられるところ", "good": ["あわてず落ち着いていられる", "がまん強い"], "pal": "イルカ", "id": "gusoku", "rare": false}, {"name": "クリオネ", "v": [0, -1, 2, 1], "catch": "かわいいのに芯が強い ギャップタイプ", "home": "北の冷たい海（流氷の下）", "look": "クリオネは「流氷の天使」と呼ばれる、貝がらを持たない巻き貝の仲間です。でもエサを食べるときは、頭から触手を出して力強くつかまえます。", "why": "やわらかい見た目の内側に、自分の考えとしっかりした芯を持っているところ", "good": ["決めたことをやりとげる力がある", "意外な一面で人をひきつける"], "pal": "クラゲ", "id": "clione", "rare": false}, {"name": "ウミウシ", "v": [1.2, -2, -1.2, 2], "catch": "カラフルな個性派 わが道アーティストタイプ", "home": "世界の海の浅い岩場", "look": "ウミウシは、多くが貝がらを持たない巻き貝の仲間です。色も形も種類によってさまざまで、まるで海の中のアート作品のようです。", "why": "人と同じじゃなくていい、自分らしさを楽しめるところ", "good": ["自分らしいアイデアを出せる", "見ている人をわくわくさせる"], "pal": "チンアナゴ", "id": "umiushi", "rare": false}, {"name": "リュウグウノツカイ", "rare": true, "v": [-1.6, 0, 0, 2], "catch": "めったに会えない ふしぎ発想家タイプ", "home": "深い海（浅いところにはめったに来ない）", "look": "リュウグウノツカイは、銀色の細長い体に赤い背びれを持つ深海魚です。長いものでは5メートルをこえることもあり、人の前に姿を見せることはめったにありません。", "why": "ひとりの時間に想像を広げ、人とちがう角度からものを見られるところ", "good": ["だれも思いつかないアイデアを出せる", "ひとりの時間を楽しめる"], "pal": "イルカ", "id": "ryuguu"}, {"name": "ジンベエザメ", "rare": true, "v": [1.2, 2, 0, 1.2], "catch": "大きな体にやさしい心 みんなの人気者タイプ", "home": "あたたかい海（世界中をゆったり旅する）", "look": "ジンベエザメは、世界でいちばん大きな魚です。体はとても大きいのに、食べるのは小さなプランクトンや小魚。ゆったり泳ぐ、おだやかな魚として知られています。", "why": "人が好きで、だれにでもやさしく、新しい世界にも心をひらけるところ", "good": ["まわりの人を安心させる", "いろんな人とつながれる"], "pal": "ダイオウグソクムシ", "id": "jinbei"}, {"name": "ダイオウイカ", "rare": true, "v": [-1.2, 0, 1.6, 1.6], "catch": "とことん深く考える なぞ多き研究者タイプ", "home": "深い海", "look": "ダイオウイカは、深い海で暮らす大きなイカです。生き物の中でもトップクラスに大きな目を持ち、生きて泳ぐ姿が撮影されたのは21世紀に入ってからです。", "why": "気になったことをきっちり、とことん深く調べぬけるところ", "good": ["ひとつのことを深くきわめられる", "よく考えてから、正確に動ける"], "pal": "イルカ", "id": "ika"}, {"name": "シーラカンス", "rare": true, "v": [0, 0, 0, 0], "catch": "どんな場所でもぶれない まんなかバランスタイプ", "home": "深い海の岩場", "look": "シーラカンスは、大昔の化石とほとんど姿が変わらないことから「生きた化石」と呼ばれる魚です。深い海の岩場で、ひっそりと暮らしています。", "why": "どの向きにもかたよらず、そのときどきに合わせて動けるところ", "good": ["どんな人とも合わせられる", "まわりが変わっても落ち着いていられる"], "pal": "ウミウシ", "id": "coela"}], "questions": [{"q": "休みの日、いちばんやりたいのは？", "o": [{"t": "みんなでワイワイ遊びに行く", "w": {"E": 2, "A": 1}}, {"t": "行ったことのない場所に出かける", "w": {"O": 2, "E": 1}}, {"t": "家でお気に入りのことをじっくり", "w": {"E": -2, "O": -1}}, {"t": "予定は決めず、その日の気分で", "w": {"C": -2}}]}, {"q": "はじめてのクラスや集まりで、あなたは？", "o": [{"t": "自分から話しかけにいく", "w": {"E": 2}}, {"t": "話しかけられたら、にこにこ答える", "w": {"A": 1, "E": -1}}, {"t": "まずは様子を見て、気の合いそうな人をさがす", "w": {"E": -1, "C": 1}}, {"t": "気づいたら、ひとりで好きなことをしている", "w": {"A": -2, "E": -1}}]}, {"q": "やること（宿題や仕事）が出たら？", "o": [{"t": "すぐにとりかかって、早めに終わらせる", "w": {"C": 2}}, {"t": "計画を立てて、少しずつ進める", "w": {"C": 1, "O": -1}}, {"t": "ギリギリにならないとエンジンがかからない", "w": {"C": -2}}, {"t": "自分なりのやり方を考えて、工夫する", "w": {"O": 2, "A": -1}}]}, {"q": "あなたの部屋や机の上は？", "o": [{"t": "いつもきれいに片づいている", "w": {"C": 2}}, {"t": "ちらかって見えるけど、どこに何があるかは分かる", "w": {"C": -1, "O": 1}}, {"t": "お気に入りのものが、ずらりと並んでいる", "w": {"O": -1, "E": -1}}, {"t": "片づけは…またこんど！", "w": {"C": -2}}]}, {"q": "友だちどうしがケンカしていたら？", "o": [{"t": "間に入って、仲直りさせる", "w": {"A": 2, "E": 1}}, {"t": "あとで、それぞれの話をこっそり聞く", "w": {"A": 1, "E": -1}}, {"t": "思ったことを、はっきり言う", "w": {"A": -1, "E": 1}}, {"t": "そっと見守る。そのうち元に戻ると思う", "w": {"C": -1, "E": -1}}]}, {"q": "はじめて見る食べ物が出てきたら？", "o": [{"t": "わくわく！まっさきに食べてみる", "w": {"O": 2, "E": 1}}, {"t": "みんなが食べてから、ちょっとだけ", "w": {"O": -1, "A": 1}}, {"t": "においや見た目をよーく調べてから", "w": {"C": 1, "E": -1}}, {"t": "いつもの好きなものを食べたい", "w": {"O": -2}}]}, {"q": "遠足や旅行の前の日、あなたは？", "o": [{"t": "持ち物リストを見ながら、しっかり準備", "w": {"C": 2}}, {"t": "楽しみすぎて、なかなか眠れない", "w": {"E": 1, "O": 1}}, {"t": "だれと何をするか、友だちと相談する", "w": {"A": 1, "E": 1}}, {"t": "準備は当日の朝、なんとかなる", "w": {"C": -2}}]}, {"q": "新しいゲームや遊びを始めるときは？", "o": [{"t": "ルールをしっかり読んでから", "w": {"C": 2}}, {"t": "とりあえずやってみて覚える", "w": {"C": -1, "O": 1}}, {"t": "人がやっているのを見てから", "w": {"E": -1, "A": 1}}, {"t": "自分だけの遊び方を見つける", "w": {"O": 2, "A": -1}}]}, {"q": "グループで何かを決めるとき、あなたは？", "o": [{"t": "「こうしよう！」と引っぱる", "w": {"E": 2, "A": -1}}, {"t": "みんなの意見をまとめる", "w": {"A": 2, "C": 1}}, {"t": "おもしろいアイデアを出す", "w": {"O": 2}}, {"t": "決まったことに、のんびりついていく", "w": {"C": -1, "E": -1}}]}, {"q": "だれかが困っているのを見つけたら？", "o": [{"t": "すぐに「どうしたの？」と声をかける", "w": {"A": 2, "E": 1}}, {"t": "目立たないように、そっと手伝う", "w": {"A": 1, "E": -1}}, {"t": "どうしたらいいか、考えてから動く", "w": {"C": 1, "O": 1}}, {"t": "ほかの人が助けていたら、まかせる", "w": {"A": -1, "E": -1}}]}, {"q": "「これ、やってくれない？」と頼まれたら？", "o": [{"t": "できることなら、よろこんで引き受ける", "w": {"A": 2}}, {"t": "自分の予定と考え合わせて決める", "w": {"C": 1, "A": -1}}, {"t": "おもしろそうなら、やってみる！", "w": {"O": 1, "E": 1}}, {"t": "自分のやり方でやっていいなら引き受ける", "w": {"O": 1, "A": -1}}]}, {"q": "うれしいことがあったら？", "o": [{"t": "すぐにみんなに話したい！", "w": {"E": 2}}, {"t": "家族や仲のいい人にだけ話す", "w": {"A": 1, "E": -1}}, {"t": "顔に出るので、話す前に気づかれる", "w": {"E": 1, "C": -1}}, {"t": "心の中でこっそり、じんわり喜ぶ", "w": {"E": -2}}]}, {"q": "「ちょっと疲れたな」と思ったら？", "o": [{"t": "だれかとおしゃべりして元気を出す", "w": {"E": 1, "A": 1}}, {"t": "ひとりで静かにすごす", "w": {"E": -2}}, {"t": "とにかくごろごろ寝る", "w": {"C": -1, "O": -1}}, {"t": "好きなことに夢中になって忘れる", "w": {"O": 1, "A": -1}}]}, {"q": "いちばん好きな時間は？", "o": [{"t": "体を動かしたり、みんなで遊んだりする時間", "w": {"E": 2}}, {"t": "絵や工作など、何かをつくる時間", "w": {"O": 2}}, {"t": "決めたことを、コツコツ進める時間", "w": {"C": 1, "O": -1}}, {"t": "人とゆっくりおしゃべりする時間", "w": {"A": 1, "E": 1}}]}, {"q": "待ち合わせの時間には？", "o": [{"t": "10分前には着いている", "w": {"C": 2}}, {"t": "だいたい時間ぴったり", "w": {"C": 1, "E": -1}}, {"t": "ついつい少し遅れがち", "w": {"C": -2}}, {"t": "友だちと合流して、一緒に向かう", "w": {"A": 1, "E": 1}}]}, {"q": "まわりの人から、よく言われるのは？", "o": [{"t": "「いつも元気だね」", "w": {"E": 2}}, {"t": "「やさしいね」", "w": {"A": 2}}, {"t": "「しっかりしてるね」", "w": {"C": 2}}, {"t": "「おもしろいこと考えるね」", "w": {"O": 2, "A": -1}}]}]};
+const SHARE_URL = "https://borderless-star.com/umi/";
+const INSTA_URL = "https://www.instagram.com/borderless_star/";
+const HP_URL = "https://borderless-star.com/";
+const AX = ['E','A','C','O'];
+const WORD = {E:['ひっそり','にぎやか'],A:['わが道','なかま思い'],C:['のびのび','きっちり'],O:['いつもの安心','わくわく']};
+const SECTIONS = [['1 / 4','ふだんのあなた'],['2 / 4','こんなとき、どうする？'],['3 / 4','人とのかかわり'],['4 / 4','さいごの4問']];
+const PER = 4, PAGES = 4, STRETCH = 1.8, NQ = DATA.questions.length;
+const RARE = [
+  {id:'ryuguu', ok:u=>u[3]>=1.7 && u[0]<=-1.2},
+  {id:'jinbei', ok:u=>u[1]>=1.3 && u[0]>=1.0 && u[3]>=0.6},
+  {id:'ika',    ok:u=>u[2]>=1.1 && u[3]>=0.9 && u[0]<=-0.5},
+  {id:'coela',  ok:u=>Math.hypot(...u)<1.2}
+];
+const img = id => `img/${id}.webp`;
+const byId = id => DATA.creatures.find(c=>c.id===id);
+const byName = n => DATA.creatures.find(c=>c.name===n);
+
+let state = {page:0, answers:Array(NQ).fill(null), view:'form', open:null};
+
+// 答えをランダムに選んだときの平均・ばらつき（ここを0として、どちら寄りかを見る）
+const MU = {}, SD = {};
+AX.forEach(a=>{
+  let m=0, v=0;
+  DATA.questions.forEach(q=>{
+    const vals=q.o.map(o=>o.w[a]||0); const mm=vals.reduce((s,x)=>s+x,0)/4;
+    m+=mm; v+=vals.reduce((s,x)=>s+(x-mm)**2,0)/4;
+  });
+  MU[a]=m; SD[a]=Math.sqrt(v);
+});
+
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// 見つけたレア（このブラウザだけに記録）
+function foundRares(){ try{ return JSON.parse(localStorage.getItem('umi_rares')||'[]'); }catch(e){ return []; } }
+function addRare(id){ try{ const f=foundRares(); if(!f.includes(id)){ f.push(id); localStorage.setItem('umi_rares',JSON.stringify(f)); } }catch(e){} }
+
+function renderPages(){
+  const box=$('#pages'); box.innerHTML='';
+  const p=state.page;
+  const sec=document.createElement('div');
+  sec.className='section';
+  sec.innerHTML=`<div class="k">セクション ${SECTIONS[p][0]}</div><h2>${SECTIONS[p][1]}</h2>`;
+  box.appendChild(sec);
+  for(let i=p*PER;i<(p+1)*PER;i++){
+    const q=DATA.questions[i];
+    const c=document.createElement('div');
+    c.className='card q'; c.id='q'+i; c.style.marginTop='12px';
+    c.innerHTML=`<h3 id="q${i}h"><span class="num">Q${i+1}</span>${esc(q.q)} <span class="req">*</span></h3>
+      <div class="opts" role="radiogroup" aria-labelledby="q${i}h">
+      ${q.o.map((o,j)=>`<label class="opt"><input type="radio" name="a${i}" value="${j}" ${state.answers[i]===j?'checked':''}><span class="dot"></span><span>${esc(o.t)}</span></label>`).join('')}
+      </div>
+      <div class="errmsg"><b>!</b>この質問は必須です</div>`;
+    c.querySelectorAll('input').forEach(inp=>inp.addEventListener('change',()=>{ state.answers[i]=+inp.value; c.classList.remove('err'); }));
+    box.appendChild(c);
+  }
+  const nav=document.createElement('div');
+  nav.className='nav'; nav.style.marginTop='12px';
+  nav.innerHTML=`${p>0?'<button class="btn ghost" id="back">戻る</button>':''}
+    <button class="btn primary" id="next">${p<PAGES-1?'次へ':'結果を見る'}</button>
+    <div class="progress"><div class="bar"><i style="width:${(p+1)/PAGES*100}%"></i></div>ページ ${p+1} / ${PAGES}</div>`;
+  box.appendChild(nav);
+  if(p>0) $('#back').onclick=()=>{state.page--; renderPages(); scrollTop();};
+  $('#next').onclick=next;
+}
+
+function next(){
+  const p=state.page, miss=[];
+  for(let i=p*PER;i<(p+1)*PER;i++) if(state.answers[i]===null){ $('#q'+i).classList.add('err'); miss.push(i); }
+  if(miss.length){ $('#q'+miss[0]).scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  if(p<PAGES-1){ state.page++; renderPages(); scrollTop(); }
+  else { state.view='result'; show(); scrollTop(); }
+}
+function scrollTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+
+function score(){
+  const raw={E:0,A:0,C:0,O:0};
+  state.answers.forEach((j,i)=>{ const w=DATA.questions[i].o[j].w; for(const a in w) raw[a]+=w[a]; });
+  const u=AX.map(a=>Math.max(-2,Math.min(2,(raw[a]-MU[a])/SD[a]*STRETCH)));
+  const normals=DATA.creatures.filter(c=>!c.rare);
+  const ranked=normals.map(c=>({c,d:c.v.reduce((s,x,i)=>s+(u[i]-x)**2,0)})).sort((a,b)=>a.d-b.d);
+  const hit=RARE.find(r=>r.ok(u));
+  const main = hit ? byId(hit.id) : ranked[0].c;
+  const second = hit ? ranked[0].c : ranked[1].c;
+  return {u,main,second};
+}
+
+function explain(u,c){
+  let axes=AX.map((a,i)=>({a,i,cv:c.v[i],uv:u[i]}))
+    .filter(x=>Math.sign(x.cv)===Math.sign(x.uv)&&Math.abs(x.cv)>=0.5&&Math.abs(x.uv)>=0.3)
+    .sort((x,y)=>(Math.abs(y.cv)+Math.abs(y.uv))-(Math.abs(x.cv)+Math.abs(x.uv))).slice(0,2);
+  if(c.id==='coela') return [`4つの向きのどれにもかたよらず、16問の答えがまんなかに集まりました。これは、めったにない答え方です。`];
+  if(!axes.length) axes=AX.map((a,i)=>({a,i,uv:u[i]})).sort((x,y)=>Math.abs(y.uv)-Math.abs(x.uv)).slice(0,1);
+  return axes.map(x=>{
+    const sgn=x.uv>=0?1:-1, word=WORD[x.a][sgn>0?1:0];
+    let best=null, n=0;
+    state.answers.forEach((j,i)=>{
+      const w=(DATA.questions[i].o[j].w[x.a]||0)*sgn;
+      if(w>0){ n++; if(!best||w>best.w) best={w,i,t:DATA.questions[i].o[j].t}; }
+    });
+    return best
+      ? `16問のうち${n}問で「<b>${word}</b>」寄りの答えを選んでいます。たとえばQ${best.i+1}の「${esc(best.t)}」。`
+      : `答え全体を見ると、「<b>${word}</b>」寄りでした。`;
+  });
+}
+
+function loadImg(src){ return new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=src; }); }
+
+// 結果カード（ストーリーズの縦長 1080×1920）
+async function makeCard(c){
+  try{ await document.fonts.load('900 100px "Zen Maru Gothic"'); await document.fonts.load('700 40px "Zen Maru Gothic"'); }catch(e){}
+  const W=1080,H=1920, cv=document.createElement('canvas'); cv.width=W; cv.height=H;
+  const x=cv.getContext('2d'), F='"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif';
+  const g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,'#9adbe6'); g.addColorStop(.5,'#1590ad'); g.addColorStop(1,'#0a3550');
+  x.fillStyle=g; x.fillRect(0,0,W,H);
+  x.strokeStyle='rgba(255,255,255,.55)'; x.lineWidth=3;
+  for(let k=0;k<60;k++){ const bx=(k*233)%W, by=(k*397)%H, r=6+(k*7)%18; if(by>1660 && bx>40 && bx<W-40) continue; if(by<210 && bx>120 && bx<W-120) continue; x.beginPath(); x.arc(bx,by,r,0,6.28); x.stroke(); }
+  x.fillStyle='#fff'; x.textAlign='center'; x.font=`900 64px ${F}`; x.fillText('海の生き物 せいかく診断',W/2,170);
+  const cx=80, cy=240, cw=W-160, ch=1380;
+  x.fillStyle='rgba(0,0,0,.18)'; roundRect(x,cx+8,cy+14,cw,ch,48); x.fill();
+  x.fillStyle='#fff'; roundRect(x,cx,cy,cw,ch,48); x.fill();
+  if(c.rare){ x.strokeStyle='#c98a12'; x.lineWidth=10; roundRect(x,cx,cy,cw,ch,48); x.stroke(); }
+  x.fillStyle='#587080'; x.font=`700 46px ${F}`; x.fillText('わたしにいちばん近い海の生き物は…',W/2,cy+100);
+  try{ const im=await loadImg(img(c.id)); x.drawImage(im,W/2-330,cy+130,660,660); }catch(e){}
+  if(c.rare){ x.fillStyle='#c98a12'; roundRect(x,W/2-110,cy+770,220,70,35); x.fill(); x.fillStyle='#fff'; x.font=`900 44px ${F}`; x.fillText('レア！',W/2,cy+822); }
+  let fs=150; x.font=`900 ${fs}px ${F}`; while(x.measureText(c.name).width>cw-80 && fs>60){ fs-=6; x.font=`900 ${fs}px ${F}`; }
+  x.fillStyle='#0a3550'; x.fillText(c.name,W/2,cy+1000);
+  x.fillStyle='#16303b'; x.font=`700 54px ${F}`;
+  c.catch.split(' ').forEach((t,k)=>x.fillText(t,W/2,cy+1110+k*74));
+  x.fillStyle='#0d7a99'; x.font=`700 40px ${F}`; x.fillText('すみか：'+c.home.replace(/（.*）/,''),W/2,cy+1300);
+  x.fillStyle='#fff'; x.font=`900 64px ${F}`; x.fillText('あなたは何の生き物？',W/2,1740);
+  x.font=`700 44px ${F}`; x.fillText('borderless-star.com/umi',W/2,1810);
+  x.font=`500 32px ${F}`; x.fillText('つくった人：さだちゃん先生（ボーダレススター）',W/2,1870);
+  return await new Promise(res=>cv.toBlob(res,'image/png'));
+}
+function roundRect(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); }
+
+function show(){
+  if(state.view!=='result'){ $('#form').classList.remove('hidden'); $('#result').classList.add('hidden'); renderPages(); return; }
+  $('#form').classList.add('hidden');
+  const {u,main:c,second:c2}=score();
+  if(c.rare) addRare(c.id);
+  const found=foundRares();
+  const pal=byName(c.pal);
+  const lines=explain(u,c);
+  const pos=v=>`${50+v/2*46}%`;
+  const r=$('#result'); r.classList.remove('hidden');
+  r.innerHTML=`
+  <div class="card hero ${c.rare?'rare':''}">
+    <p class="pre">あなたにいちばん近い海の生き物は…</p>
+    <img class="pic" src="${img(c.id)}" alt="${esc(c.name)}のイラスト" width="260" height="260">
+    ${c.rare?'<span class="rarebadge">レア</span>':''}
+    <p class="name" style="font-size:${c.name.length>7?'clamp(26px,8vw,44px)':c.name.length>5?'clamp(32px,9.6vw,52px)':''}">${esc(c.name)}</p>
+    <p class="catch">${c.catch.split(' ').map(x=>`<span>${esc(x)}</span>`).join('')}</p>
+    <span class="chip">すみか：${esc(c.home)}</span>
+  </div>
+  <div class="card why">
+    <h2>どうして<span class="nw">「${esc(c.name)}」</span>になったの？</h2>
+    <ul>${lines.map(l=>`<li>${l}</li>`).join('')}</ul>
+    <p>${esc(c.look)}</p>
+    <p>${esc(c.name)}の、${esc(c.why)}が、あなたの答えと重なりました。</p>
+    <div class="axes" aria-label="あなたと${esc(c.name)}の、4つの向き">
+      ${AX.map((a,i)=>`<div class="axis"><span class="l ${u[i]<-0.3?'on':''}">${WORD[a][0]}</span>
+        <div class="track"><span class="it" style="left:${pos(c.v[i])}"></span><span class="you" style="left:${pos(u[i])}"></span></div>
+        <span class="r ${u[i]>0.3?'on':''}">${WORD[a][1]}</span></div>`).join('')}
+      <div class="legend"><span><i style="background:var(--sea)"></i>あなた</span><span><i style="border:2px solid var(--deep)"></i>${esc(c.name)}</span></div>
+    </div>
+  </div>
+  <div class="card good">
+    <h2><span class="nw">${esc(c.name)}タイプ</span>のいいところ</h2>
+    <ul>${c.good.map(g=>`<li>${esc(g)}</li>`).join('')}</ul>
+  </div>
+  <div class="card more">
+    <h2>ほかにも</h2>
+    <p>${c.rare?'レアをのぞくと、いちばん近かったのは':'2番目に近かったのは'}「<b>${esc(c2.name)}</b>」（${esc(c2.catch)}）。</p>
+    <p>相性がいいのは「<b>${esc(pal.name)}</b>」。あなたにないものを持っていて、一緒にいると世界が広がりそうです。</p>
+  </div>
+  <div class="card share">
+    <h2>結果カード</h2>
+    <img class="cardimg" id="cardimg" alt="${esc(c.name)}の結果カード" width="300" height="533">
+    <p class="hint">画像を長押しすると保存できます。インスタのストーリーズやLINEで送ってみてください。</p>
+    <div class="actions">
+      <button class="btn primary" id="shareBtn">画像をシェア・保存</button>
+      <button class="btn ghost" id="copy">結果の文をコピー</button>
+      <button class="btn ghost" id="again">もう一度あそぶ</button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </div>
+  <div class="card follow">
+    <h2>つくった人</h2>
+    <p>元小学校・特別支援学校の教諭、さだちゃん先生。子育てや学校のことをインスタで発信しています。子育てや学校の悩みの相談は、ホームページで受け付けています。</p>
+    <div class="actions">
+      <a class="btn insta" href="${INSTA_URL}" target="_blank" rel="noopener">さだちゃん先生のInstagramを見る</a>
+      <a class="btn primary" href="${HP_URL}" target="_blank" rel="noopener">ボーダレススターのHPを見る</a>
+    </div>
+  </div>
+  <div class="card">
+    <h2>24種類の海の生き物</h2>
+    <p class="note" style="margin-bottom:10px">「？？？」はレアな生き物。めったに出ない答え方をすると会えます。</p>
+    <div class="grid">${DATA.creatures.map((x,k)=>{
+      const locked = x.rare && x.id!==c.id && !found.includes(x.id);
+      return locked
+        ? `<button type="button" class="locked r" disabled aria-label="まだ会っていないレアな生き物"><span class="q">？</span>？？？</button>`
+        : `<button type="button" data-k="${k}" class="${x.id===c.id?'me':''} ${x.rare?'r':''}" aria-expanded="${state.open===k}"><img src="${img(x.id)}" alt="" loading="lazy" width="72" height="72">${esc(x.name)}</button>`;
+    }).join('')}</div>
+    <div class="detail ${state.open===null?'hidden':''}" id="detail" aria-live="polite"></div>
+  </div>`;
+  const fill=()=>{ const d=$('#detail'); if(state.open===null){d.classList.add('hidden');return;}
+    const x=DATA.creatures[state.open]; d.classList.remove('hidden');
+    d.innerHTML=`<img src="${img(x.id)}" alt=""><div><b>${esc(x.name)}</b>${x.rare?'（レア）':''}<br>${esc(x.catch)}<br>${esc(x.look)}</div>`; };
+  fill();
+  r.querySelectorAll('.grid button[data-k]').forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.k; state.open=state.open===k?null:k;
+    r.querySelectorAll('.grid button[data-k]').forEach(o=>o.setAttribute('aria-expanded',String(+o.dataset.k===state.open)));
+    fill();
+  });
+  const status=t=>{ $('#status').textContent=t; };
+  const text=`海の生き物せいかく診断で、わたしは「${c.name}」でした！${c.rare?'（レア！）':''}（${c.catch}）\nあなたは何の生き物？\n${SHARE_URL}`;
+  let cardBlob=null;
+  makeCard(c).then(b=>{ cardBlob=b; $('#cardimg').src=URL.createObjectURL(b); }).catch(()=>{});
+  $('#again').onclick=()=>{ state={page:0,answers:Array(NQ).fill(null),view:'form',open:null}; show(); scrollTop(); };
+  $('#copy').onclick=async()=>{
+    try{ await navigator.clipboard.writeText(text); status('コピーしました。LINEなどに貼りつけて送れます'); }
+    catch(e){ status('コピーできませんでした。お手数ですが手でコピーしてください'); }
+  };
+  $('#shareBtn').onclick=async()=>{
+    if(!cardBlob){ status('カードを作っています。少し待ってからもう一度押してください'); return; }
+    const file=new File([cardBlob],`umi_${c.id}.png`,{type:'image/png'});
+    try{
+      if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file],text}); status(''); return; }
+    }catch(e){ if(e && e.name==='AbortError') return; }
+    try{
+      const a=document.createElement('a'); a.href=URL.createObjectURL(cardBlob); a.download=file.name;
+      document.body.appendChild(a); a.click(); a.remove();
+      status('画像を保存しました。保存できないときは、カードを長押ししてください');
+    }catch(e){ status('この画面では保存できません。カードを長押しして保存してください'); }
+  };
+}
+
+/* 海のヘッダー：光の筋と、のぼっていく泡 */
+function sea(){
+  const cv=$('#sea'), ctx=cv.getContext('2d');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,dpr=1, bubbles=[];
+  function size(){
+    dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    bubbles=Array.from({length:Math.round(W/14)},()=>({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*4,s:.15+Math.random()*.5,p:Math.random()*6.28}));
+  }
+  function draw(t){
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#9adbe6'); g.addColorStop(.5,'#1590ad'); g.addColorStop(1,'#0a3550');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.save(); ctx.globalCompositeOperation='lighter';
+    for(let k=0;k<4;k++){
+      const x=W*(.12+k*.26)+Math.sin(t/4000+k)*12;
+      const lg=ctx.createLinearGradient(0,0,0,H); lg.addColorStop(0,'rgba(255,255,255,.16)'); lg.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=lg; ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+40,0); ctx.lineTo(x+110,H); ctx.lineTo(x+30,H); ctx.fill();
+    }
+    ctx.restore();
+    ctx.strokeStyle='rgba(255,255,255,.55)'; ctx.lineWidth=1.5;
+    for(let row=0;row<2;row++){ ctx.beginPath();
+      for(let x=0;x<=W;x+=6){ const y=10+row*9+Math.sin(x/38+t/900+row)*3; x?ctx.lineTo(x,y):ctx.moveTo(x,y); }
+      ctx.stroke(); }
+    bubbles.forEach(b=>{
+      ctx.beginPath(); ctx.arc(b.x+Math.sin(t/700+b.p)*3,b.y,b.r,0,6.28);
+      ctx.strokeStyle='rgba(255,255,255,.7)'; ctx.lineWidth=1; ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,.12)'; ctx.fill();
+      if(!reduce){ b.y-=b.s; if(b.y<-6){ b.y=H+6; b.x=Math.random()*W; } }
+    });
+  }
+  function loop(t){ draw(t); if(!reduce) requestAnimationFrame(loop); }
+  size(); window.addEventListener('resize',()=>{size(); if(reduce) draw(0);});
+  requestAnimationFrame(loop);
+}
+function parade(){
+  const ids=['iruka','kumanomi','mendako','fugu','umigame','tako','clione'];
+  const n=Math.max(3,Math.min(ids.length,Math.floor((document.body.clientWidth-40)/56)));
+  $('#parade').innerHTML=ids.slice(0,n).map(id=>`<img src="${img(id)}" alt="">`).join('');
+}
+
+function start(saved){
+  if(saved && Array.isArray(saved.answers) && saved.answers.length===NQ) state=Object.assign(state,saved);
+  sea(); parade(); show();
+}
+window.claude?.hot?.snapshot?.(()=>state);
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+}
+</script>
+</body>
+</html>
